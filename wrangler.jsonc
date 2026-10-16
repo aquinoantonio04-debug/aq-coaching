@@ -2,6 +2,8 @@
   // Cloudflare: pubblica i file statici del sito (form candidatura e attivazione)
   "name": "aq-coaching",
   "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": false,
   "assets": {
     "directory": ".",
     "html_handling": "auto-trailing-slash",
