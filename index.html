@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AQ Coaching · Candidatura al percorso</title>
+<meta name="description" content="Candidatura al percorso AQ Coaching con Head Coach Antonio Aquino.">
+<meta name="theme-color" content="#050607">
+<meta property="og:title" content="AQ Coaching · Candidatura al percorso">
+<meta property="og:description" content="Lavoro con un numero limitato di persone, per seguirle davvero.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23050607%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23F2C14E%22%20stroke-width%3D%223%22%20fill%3D%22none%22%20stroke-dasharray%3D%22160%2036%2036%2018%22/%3E%3Cpath%20d%3D%22M33%2067L48%2027H54L69%2067%22%20stroke%3D%22%23fff%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22/%3E%3Cpath%20d%3D%22M40%2054H62%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22/%3E%3Ccircle%20cx%3D%2261%22%20cy%3D%2258%22%20r%3D%2213%22%20stroke%3D%22%23F2C14E%22%20stroke-width%3D%225%22%20fill%3D%22%23111418%22/%3E%3Cpath%20d%3D%22M67%2066L77%2076%22%20stroke%3D%22%23F2C14E%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" type="image/svg+xml">
+<style>
+/* AQ Coaching · moduli pubblici · stile Client System (nero / oro) */
+:root{
+  --bg:#050607;--surf:#0B0D10;--card:#111418;--pan:#171A1F;--ln:#22262D;--ln2:#2C313A;
+  --tx:#F4F1E8;--mu:#A9A9A4;--mu2:#707278;
+  --gold:#F2C14E;--gold2:#B98220;--goldHi:#FFD86A;--goldRGB:242,193,78;
+  --grad:linear-gradient(135deg,#B98220 0%,#F2C14E 55%,#FFD86A 100%);
+  --onGold:#0B0906;--bad:#E5534B;--badTx:#F08A84;
+  --r:12px;--r-sm:8px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{
+  background:radial-gradient(1000px 380px at 50% -140px,rgba(var(--goldRGB),.10),transparent 70%),var(--bg);
+  background-attachment:fixed;color:var(--tx);
+  font:16px/1.5 Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased;font-feature-settings:"cv11","ss01";
+}
+button,input,textarea{font:inherit;color:inherit}
+a{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.app{min-height:100vh;min-height:100dvh;max-width:540px;margin:0 auto;display:flex;flex-direction:column;
+  padding:0 18px calc(env(safe-area-inset-bottom,0px) + 20px)}
+
+/* barra superiore come il CS */
+.hd{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;min-height:56px;
+  margin:0 -18px;padding:calc(env(safe-area-inset-top,0px) + 6px) 18px 6px;
+  background:rgba(5,6,7,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.hd::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--gold) 0%,rgba(var(--goldRGB),.45) 35%,rgba(var(--goldRGB),0) 85%)}
+.hd svg.lg{width:26px;height:26px;flex:none}
+.hd .mk{font:800 12.5px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.hd .mk b{color:var(--gold);margin-left:.3em}
+.hd .back{margin-left:auto;background:none;border:0;color:var(--mu);font-size:14px;font-weight:600;
+  min-height:44px;padding:0 2px 0 8px;cursor:pointer;display:flex;align-items:center;gap:4px}
+.hd .back svg{width:18px;height:18px}
+.prog{height:2px;background:var(--pan);margin:0 -18px}
+.prog i{display:block;height:100%;width:0;background:var(--grad);transition:width .35s ease}
+[hidden]{display:none!important}
+
+/* schermate */
+.stage{flex:1;display:flex;flex-direction:column}
+.scr{display:none;flex-direction:column;flex:1;padding-top:26px;animation:in .35s ease}
+.scr.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.kick{font:700 11px/1 Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.kick::after{content:"";width:28px;height:1px;background:rgba(var(--goldRGB),.55)}
+h1{font:800 31px/1.12 Cinzel,Georgia,serif;letter-spacing:.1em;margin:0;color:#fff}
+h2{font:700 23px/1.25 Inter,sans-serif;letter-spacing:-.015em;margin:0;color:#fff;text-wrap:balance}
+.lead{color:var(--mu);font-size:15px;margin:10px 0 0;line-height:1.55}
+.lead b{color:var(--tx);font-weight:600}
+
+/* splash (identico al CS) */
+.splash{justify-content:center;align-items:center;text-align:center;padding-top:20px}
+.splash .logo{width:84px;height:84px;margin-bottom:14px}
+.splash .sub{color:var(--gold);font:700 11px/1 Inter,sans-serif;letter-spacing:.24em;margin-top:10px;text-transform:uppercase}
+.splash .dv{width:46px;height:1px;background:var(--gold);margin:20px auto 16px}
+.splash h2{font-size:21px;margin-bottom:2px}
+.splash .lead{max-width:360px;margin-left:auto;margin-right:auto}
+.foot{color:var(--mu2);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-top:22px;text-align:center}
+
+/* elenchi numerati editoriali */
+.nl{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;text-align:left;width:100%;
+  border:1px solid var(--ln);border-radius:var(--r);background:var(--card)}
+.nl li{display:flex;gap:14px;align-items:baseline;padding:13px 15px;border-top:1px solid var(--ln);font-size:14.5px;line-height:1.45}
+.nl li:first-child{border-top:0}
+.nl li b{flex:none;font:700 13px/1 Cinzel,serif;color:var(--gold);letter-spacing:.06em;width:20px}
+.bl{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:7px}
+.bl li{position:relative;padding-left:16px;font-size:14px;color:var(--tx);line-height:1.45}
+.bl li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:1px;background:var(--gold)}
+.note{font-size:13px;color:var(--mu);line-height:1.5;margin-top:14px;padding:11px 13px;border-left:2px solid var(--gold);background:var(--surf);border-radius:0 var(--r-sm) var(--r-sm) 0}
+
+/* opzioni */
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:22px}
+.glabel{font-size:13px;font-weight:600;color:var(--tx);margin:22px 0 -12px}
+.glabel+.opts{margin-top:20px}
+.opt{position:relative;display:flex;align-items:center;gap:14px;width:100%;text-align:left;min-height:58px;padding:13px 15px;
+  background:var(--card);border:1px solid var(--ln);border-radius:var(--r);cursor:pointer;
+  transition:border-color .15s,background .15s,transform .1s}
+.opt:active{transform:scale(.988)}
+.opt .tx{flex:1;min-width:0}
+.opt .tt,.opt .ds{display:block}
+.opt .tt{font-weight:600;font-size:15.5px;color:#fff;line-height:1.3}
+.opt .ds{font-size:13px;color:var(--mu);margin-top:3px;line-height:1.4}
+.opt .ind{flex:none;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--ln2);display:grid;place-items:center;transition:all .15s}
+.opts[data-mode=multi] .opt .ind{border-radius:5px}
+.opt.sel{border-color:rgba(var(--goldRGB),.7);background:linear-gradient(180deg,rgba(var(--goldRGB),.10),rgba(var(--goldRGB),.03)),var(--card);box-shadow:inset 3px 0 0 var(--gold)}
+.opt.sel .ind{border-color:var(--gold);background:var(--gold)}
+.opt.sel .ind::after{content:"";width:9px;height:5px;border:2px solid var(--onGold);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+@media(hover:hover){.opt:hover{border-color:rgba(var(--goldRGB),.45)}}
+.opts.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.opts.g4 .opt{flex-direction:column;justify-content:center;text-align:center;min-height:76px;padding:10px 6px;gap:2px}
+.opts.g4 .opt .tt{font:700 24px/1 Inter,sans-serif;font-variant-numeric:tabular-nums}
+.opts.g4 .opt .ds{margin-top:4px;font-size:11.5px}
+.opts.g4 .opt .ind{display:none}
+.opts.g4 .opt.sel{box-shadow:inset 0 2px 0 var(--gold)}
+.gerr{display:none;font-size:13px;color:var(--badTx);margin-top:10px}
+.gerr.on{display:block}
+
+/* card percorso */
+.pc{background:var(--card);border:1px solid var(--ln);border-radius:var(--r);overflow:hidden;transition:border-color .15s}
+.pc.sel{border-color:rgba(var(--goldRGB),.7);box-shadow:inset 3px 0 0 var(--gold);background:linear-gradient(180deg,rgba(var(--goldRGB),.08),rgba(var(--goldRGB),0) 70%),var(--card)}
+.pc .opt{border:0;border-radius:0;background:none;box-shadow:none;align-items:flex-start;padding:15px 15px 12px}
+.pc .opt.sel{background:none;box-shadow:none}
+.pc .opt .ind{margin-top:2px}
+.pc .nm{font:800 12px/1 Inter,sans-serif;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.pc .more{display:flex;align-items:center;gap:6px;width:100%;background:none;border:0;border-top:1px solid var(--ln);color:var(--mu);
+  font-size:13px;font-weight:600;padding:0 15px;min-height:44px;cursor:pointer;text-align:left}
+.pc .more svg{width:14px;height:14px;transition:transform .2s}
+.pc.open .more svg{transform:rotate(180deg)}
+.pc .det{display:none;padding:2px 15px 15px}
+.pc.open .det{display:block}
+.pc .det .dl{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mu2);margin-top:8px}
+
+/* campi */
+.fields{display:flex;flex-direction:column;gap:14px;margin-top:22px}
+.f label{display:block;font-size:12.5px;font-weight:600;color:var(--mu);margin:0 0 7px}
+.f label em{font-style:normal;color:var(--mu2);font-weight:500}
+.f input,.f textarea{width:100%;min-height:52px;background:var(--bg);border:1px solid var(--ln);border-radius:var(--r-sm);
+  padding:13px 14px;font-size:16px;outline:none;transition:border-color .15s,box-shadow .15s}
+.f textarea{min-height:128px;resize:vertical;line-height:1.5}
+.f input:focus,.f textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(var(--goldRGB),.16)}
+.f input::placeholder,.f textarea::placeholder{color:#4E5058}
+.f .hint{font-size:12.5px;color:var(--mu2);margin-top:7px;line-height:1.45}
+.f .msg{display:none;font-size:12.5px;color:var(--badTx);margin-top:6px}
+.f.err input,.f.err textarea{border-color:var(--bad)}
+.f.err .msg{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--tx);line-height:1.5;cursor:pointer;
+  padding:14px;border:1px solid var(--ln);border-radius:var(--r);background:var(--card)}
+.chk input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--gold)}
+.chk.err{border-color:var(--bad)}
+.small{font-size:12.5px;color:var(--mu2);line-height:1.5;margin-top:10px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* riepilogo */
+.kv{border:1px solid var(--ln);border-radius:var(--r);background:var(--card);margin-top:20px}
+.kv div{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 15px;border-top:1px solid var(--ln)}
+.kv div:first-child{border-top:0}
+.kv span{font-size:12.5px;color:var(--mu2);font-weight:500;flex:none}
+.kv strong{font-size:14.5px;color:var(--tx);font-weight:600;text-align:right;overflow-wrap:anywhere}
+
+/* azioni */
+.act{margin-top:auto;padding-top:26px}
+.btn{width:100%;min-height:56px;border:0;border-radius:var(--r);background:var(--grad);color:var(--onGold);
+  font:800 13.5px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px}
+.btn:active{transform:scale(.988)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn.busy::after{content:"";width:15px;height:15px;border:2px solid var(--onGold);border-right-color:transparent;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.btn2{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;margin-top:10px;
+  border:1px solid var(--ln2);border-radius:var(--r);background:var(--pan);color:var(--tx);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn2 svg{width:16px;height:16px;color:var(--gold)}
+.skip{display:block;margin:10px auto 0;background:none;border:0;color:var(--mu);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;min-height:44px;padding:0 16px;cursor:pointer}
+.ferr{display:none;margin-top:12px;font-size:13.5px;color:var(--badTx);background:rgba(229,83,75,.08);border:1px solid rgba(229,83,75,.35);border-radius:var(--r-sm);padding:12px 14px;line-height:1.45}
+.ferr.on{display:block}
+.linkb{background:none;border:0;padding:0;color:var(--gold);font:inherit;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+
+/* schermata finale */
+.done{justify-content:center;text-align:center}
+.done .ok{width:72px;height:72px;border-radius:50%;border:1px solid rgba(var(--goldRGB),.6);background:rgba(var(--goldRGB),.08);display:grid;place-items:center;margin:0 auto 22px}
+.done .ok svg{width:30px;height:30px}
+.done .kick{justify-content:center}
+.done .kick::after{display:none}
+.done .nl{margin-top:24px}
+.sign{margin-top:24px;font-size:14px;color:var(--mu);line-height:1.6}
+.sign b{display:block;font:700 15px/1.3 Cinzel,serif;color:#fff;letter-spacing:.06em;margin-top:6px}
+
+/* foglio informativa */
+.ov{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.72);display:flex;align-items:flex-end;justify-content:center}
+.sheet{width:100%;max-width:540px;max-height:86vh;overflow:auto;background:var(--card);border:1px solid rgba(var(--goldRGB),.28);border-bottom:0;
+  border-radius:18px 18px 0 0;padding:20px 18px calc(env(safe-area-inset-bottom,0px) + 20px)}
+.sheet h3{margin:0 0 4px;font:700 15px/1.3 Cinzel,serif;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+.sheet h4{margin:16px 0 4px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.sheet p{margin:0;font-size:14px;color:var(--mu);line-height:1.55}
+@media(min-width:600px){.ov{align-items:center}.sheet{border-radius:18px;border-bottom:1px solid rgba(var(--goldRGB),.28)}}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(min-width:700px){.scr{padding-top:40px}h1{font-size:34px}h2{font-size:26px}}
+@media(max-width:360px){.opts.g4 .opt .tt{font-size:20px}h1{font-size:26px}}
+
+/* ===== Linguaggio visivo del Client System (card oro, barre oro, selezioni piene) ===== */
+body{background:radial-gradient(900px 420px at 50% -120px,rgba(var(--goldRGB),.16),transparent 70%),var(--bg)}
+/* intestazione come il CS: AQ COACHING + riga di contesto */
+.hd{min-height:64px;border-bottom:1px solid rgba(var(--goldRGB),.18)}
+.hd::after{height:2px;background:linear-gradient(90deg,var(--gold) 0%,rgba(var(--goldRGB),.55) 40%,rgba(var(--goldRGB),.12) 100%)}
+.hd svg.lg{width:34px;height:34px}
+.hd .brand{display:flex;flex-direction:column;gap:5px;min-width:0}
+.hd .mk{font-size:14px;letter-spacing:.14em}
+.hd .ctx{font:600 10.5px/1.2 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog{height:3px;margin-top:0}
+.prog i{box-shadow:0 0 12px rgba(var(--goldRGB),.6)}
+
+/* etichetta domanda come pill oro + titolo con barra oro a sinistra */
+.kick{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(var(--goldRGB),.55);border-radius:999px;
+  background:rgba(var(--goldRGB),.08);font-size:10.5px;letter-spacing:.18em;margin-bottom:16px}
+.kick::after{display:none}
+.kick::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px rgba(var(--goldRGB),.8)}
+.scr:not(.splash):not(.done)>h2{padding-left:14px;border-left:3px solid var(--gold)}
+.glabel{padding-left:10px;border-left:3px solid var(--gold);line-height:1.2}
+
+/* opzioni come le card KPI del CS */
+.opt{border:1px solid rgba(var(--goldRGB),.38);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.09),rgba(var(--goldRGB),0) 65%),var(--card);
+  box-shadow:inset 0 2px 0 rgba(var(--goldRGB),.85);overflow:hidden}
+.opt .ind{border-color:rgba(var(--goldRGB),.6)}
+@media(hover:hover){.opt:hover{border-color:var(--gold)}}
+.opt.sel{border-color:var(--gold);background:var(--grad);box-shadow:0 8px 26px rgba(var(--goldRGB),.28)}
+.opt.sel .tt{color:var(--onGold)}
+.opt.sel .ds{color:rgba(11,9,6,.72)}
+.opt.sel .ind{background:var(--onGold);border-color:var(--onGold)}
+.opt.sel .ind::after{border-color:var(--gold)}
+.opts.g4 .opt{box-shadow:inset 0 2px 0 rgba(var(--goldRGB),.85)}
+.opts.g4 .opt .ds{color:var(--gold)}
+.opts.g4 .opt.sel{box-shadow:0 8px 26px rgba(var(--goldRGB),.28)}
+.opts.g4 .opt.sel .ds{color:rgba(11,9,6,.72)}
+
+/* card percorso */
+.pc{border:1px solid rgba(var(--goldRGB),.38);box-shadow:inset 0 2px 0 rgba(var(--goldRGB),.85);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.09),rgba(var(--goldRGB),0) 55%),var(--card)}
+.pc .opt,.pc .opt.sel{border:0;box-shadow:none;background:none}
+.pc .opt.sel .tt{color:#fff}.pc .opt.sel .ds{color:var(--mu)}
+.pc .opt.sel .ind{background:var(--gold);border-color:var(--gold)}
+.pc .opt.sel .ind::after{border-color:var(--onGold)}
+.pc.sel{border-color:var(--gold);box-shadow:inset 0 3px 0 var(--gold),0 8px 26px rgba(var(--goldRGB),.22);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.2),rgba(var(--goldRGB),.04) 70%),var(--card)}
+.pc .nm{font-size:13px}
+.pc .more{color:var(--gold);border-top-color:rgba(var(--goldRGB),.22)}
+
+/* campi, riquadri, elenchi */
+.f label{color:var(--gold);letter-spacing:.04em}
+.f label em{color:var(--mu2)}
+.f input,.f textarea{border-color:rgba(var(--goldRGB),.28);background:#08090B}
+.chk{border-color:rgba(var(--goldRGB),.42);box-shadow:inset 0 2px 0 rgba(var(--goldRGB),.85);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.08),rgba(var(--goldRGB),0) 65%),var(--card)}
+.nl,.kv{border-color:rgba(var(--goldRGB),.42);box-shadow:inset 0 2px 0 var(--gold);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.09),rgba(var(--goldRGB),0) 60%),var(--card)}
+.nl li,.kv div{border-top-color:rgba(var(--goldRGB),.14)}
+.kv span{color:var(--gold)}
+.note{border-left-width:3px;background:linear-gradient(90deg,rgba(var(--goldRGB),.1),rgba(var(--goldRGB),.02)),var(--card);color:var(--tx)}
+.btn{box-shadow:0 10px 30px rgba(var(--goldRGB),.3)}
+.btn2{border-color:rgba(var(--goldRGB),.55);color:var(--gold);background:rgba(var(--goldRGB),.08)}
+.intro-box{border:1px solid rgba(var(--goldRGB),.42)!important;box-shadow:inset 0 2px 0 var(--gold);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.09),rgba(var(--goldRGB),0) 60%),var(--card)!important}
+
+/* splash come il CS */
+.splash h1{text-shadow:0 0 30px rgba(var(--goldRGB),.18)}
+.splash .logo{filter:drop-shadow(0 0 18px rgba(var(--goldRGB),.35))}
+.done .ok{background:var(--grad);border-color:var(--gold);box-shadow:0 0 30px rgba(var(--goldRGB),.4)}
+.done .ok svg path{stroke:var(--onGold)}
+.done .kick{align-self:center}
+.sign b{color:var(--gold)}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hd">
+    <svg class="lg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="45" stroke="#22262D" stroke-width="3" fill="none"/><circle cx="50" cy="50" r="45" stroke="#F2C14E" stroke-width="3" fill="none" stroke-dasharray="180 40 40 20"/><path d="M32 68L48 24H54L70 68" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M39 54H63" stroke="#fff" stroke-width="5"/><circle cx="62" cy="58" r="15" stroke="#F2C14E" stroke-width="6" fill="#111418"/><path d="M69 67L81 79" stroke="#F2C14E" stroke-width="6" stroke-linecap="round"/></svg>
+    <span class="brand"><span class="mk">AQ<b>Coaching</b></span><span class="ctx">Candidatura al percorso</span></span>
+    <button class="back" id="back" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Indietro</button>
+  </header>
+  <div class="prog" id="prog" hidden><i></i></div>
+
+  <main class="stage">
+
+    <!-- intro -->
+    <section class="scr splash" data-k="intro">
+      <svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="45" stroke="#22262D" stroke-width="2" fill="none"/><circle cx="50" cy="50" r="45" stroke="#F2C14E" stroke-width="2" fill="none" stroke-dasharray="180 40 40 20"/><path d="M32 68L48 24H54L70 68" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M39 54H63" stroke="#fff" stroke-width="4"/><circle cx="62" cy="58" r="15" stroke="#F2C14E" stroke-width="5" fill="#111418"/><path d="M69 67L81 79" stroke="#F2C14E" stroke-width="5" stroke-linecap="round"/></svg>
+      <h1>AQ COACHING</h1>
+      <div class="sub">Candidatura al percorso</div>
+      <div class="dv"></div>
+      <p class="lead">Lavoro con un numero limitato di persone, per seguirle davvero.</p>
+      <p class="lead">Rispondi a poche domande: mi servono per capire se e come posso aiutarti.</p>
+      <ul class="nl">
+        <li><b>01</b><span>Circa 2 minuti · quasi tutto a tocchi</span></li>
+        <li><b>02</b><span>Leggo personalmente ogni candidatura</span></li>
+        <li><b>03</b><span>Se c'è margine per lavorare insieme, ti scrivo io</span></li>
+      </ul>
+      <div class="act" style="width:100%"><button class="btn" type="button" data-go="next">Inizia</button></div>
+      <div class="foot">Head Coach — Antonio Aquino</div>
+    </section>
+
+    <!-- 01 -->
+    <section class="scr" data-k="obiettivo" data-q data-auto>
+      <div class="kick">01 · Obiettivo</div>
+      <h2>Qual è il risultato che vuoi raggiungere?</h2>
+      <p class="lead">Scegli l'obiettivo che ti rappresenta maggiormente.</p>
+      <div class="opts" data-k="obiettivo" data-req>
+        <button class="opt" data-v="Più massa muscolare"><span class="tx"><span class="tt">Più massa muscolare</span><span class="ds">Crescere in modo visibile e misurabile</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Ricomposizione"><span class="tx"><span class="tt">Ricomposizione</span><span class="ds">Meno grasso, più muscolo, fisico più definito</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Dimagrire"><span class="tx"><span class="tt">Dimagrire</span><span class="ds">Perdere peso mantenendo il più possibile massa e tono</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Forza e performance"><span class="tx"><span class="tt">Forza e performance</span><span class="ds">Carichi, prestazione e/o corsa</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Tornare in forma"><span class="tx"><span class="tt">Tornare in forma</span><span class="ds">Ripartire dopo uno stop o iniziare da zero</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="obiettivo">Scegli un'opzione per continuare.</div>
+    </section>
+
+    <!-- 02 -->
+    <section class="scr" data-k="esperienza" data-q data-auto>
+      <div class="kick">02 · Esperienza</div>
+      <h2>Da quanto ti alleni con costanza?</h2>
+      <div class="opts" data-k="esperienza" data-req>
+        <button class="opt" data-v="Mai o quasi mai"><span class="tx"><span class="tt">Mai o quasi mai</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Meno di 1 anno"><span class="tx"><span class="tt">Meno di 1 anno</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Da 1 a 3 anni"><span class="tx"><span class="tt">Da 1 a 3 anni</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Più di 3 anni"><span class="tx"><span class="tt">Più di 3 anni</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="esperienza">Scegli un'opzione per continuare.</div>
+    </section>
+
+    <!-- 03 -->
+    <section class="scr" data-k="luogo" data-q data-auto>
+      <div class="kick">03 · Dove</div>
+      <h2>Dove ti alleni di solito?</h2>
+      <div class="opts" data-k="luogo" data-req>
+        <button class="opt" data-v="In palestra"><span class="tx"><span class="tt">In palestra</span><span class="ds">Ho accesso a macchine, cavi e pesi liberi</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="A casa"><span class="tx"><span class="tt">A casa</span><span class="ds">Con attrezzatura limitata</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Non mi alleno ancora"><span class="tx"><span class="tt">Non mi alleno ancora</span><span class="ds">Devo ancora scegliere dove</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="luogo">Scegli un'opzione per continuare.</div>
+    </section>
+
+    <!-- 04 -->
+    <section class="scr" data-k="giorni" data-q data-auto>
+      <div class="kick">04 · Disponibilità</div>
+      <h2>Quanti giorni a settimana puoi allenarti realisticamente?</h2>
+      <div class="opts g4" data-k="giorni" data-req>
+        <button class="opt" data-v="2"><span class="tt">2</span><span class="ds">giorni</span><span class="ind"></span></button>
+        <button class="opt" data-v="3"><span class="tt">3</span><span class="ds">giorni</span><span class="ind"></span></button>
+        <button class="opt" data-v="4"><span class="tt">4</span><span class="ds">giorni</span><span class="ind"></span></button>
+        <button class="opt" data-v="5+"><span class="tt">5+</span><span class="ds">giorni</span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="giorni">Scegli un'opzione per continuare.</div>
+    </section>
+
+    <!-- 05 -->
+    <section class="scr" data-k="ostacolo" data-q>
+      <div class="kick">05 · Il punto</div>
+      <h2>Cosa ti ha bloccato finora?</h2>
+      <p class="lead">Scegli tutto ciò che ti rappresenta.</p>
+      <div class="opts" data-k="ostacolo" data-mode="multi" data-req>
+        <button class="opt" data-v="Non vedo risultati"><span class="tx"><span class="tt">Mi alleno ma non vedo risultati</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Non so impostare l'allenamento"><span class="tx"><span class="tt">Non so come impostare l'allenamento</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Costanza"><span class="tx"><span class="tt">Fatico a essere costante</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Alimentazione"><span class="tx"><span class="tt">Non so come gestire l'alimentazione</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Tecnica o organizzazione"><span class="tx"><span class="tt">Ho difficoltà con tecnica o organizzazione</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Dolori o limitazioni"><span class="tx"><span class="tt">Dolori o limitazioni che condizionano l'allenamento</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Altro"><span class="tx"><span class="tt">Altro</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="ostacolo">Scegli almeno un'opzione per continuare.</div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 06 -->
+    <section class="scr" data-k="modalita" data-q data-auto>
+      <div class="kick">06 · Modalità</div>
+      <h2>Come preferiresti essere seguito?</h2>
+      <div class="opts" data-k="modalita" data-req>
+        <button class="opt" data-v="Online"><span class="tx"><span class="tt">Online</span><span class="ds">Programma personale, monitoraggio e check con me</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="In presenza"><span class="tx"><span class="tt">In presenza</span><span class="ds">Allenamenti di persona con me</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Online + presenza"><span class="tx"><span class="tt">Online + presenza</span><span class="ds">Programmazione, monitoraggio e sedute in presenza</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Consigliami tu"><span class="tx"><span class="tt">Non lo so, consigliami tu</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="modalita">Scegli un'opzione per continuare.</div>
+    </section>
+
+    <!-- 07 -->
+    <section class="scr" data-k="tempistica" data-q data-auto>
+      <div class="kick">07 · Tempistica</div>
+      <h2>Quando vorresti iniziare?</h2>
+      <div class="opts" data-k="tempistica" data-req>
+        <button class="opt" data-v="Subito"><span class="tx"><span class="tt">Subito</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Entro un mese"><span class="tx"><span class="tt">Entro un mese</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Mi sto ancora informando"><span class="tx"><span class="tt">Mi sto ancora informando</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="tempistica">Scegli un'opzione per continuare.</div>
+    </section>
+
+    <!-- 08 -->
+    <section class="scr" data-k="budget" data-q data-auto>
+      <div class="kick">08 · Investimento</div>
+      <h2>Quale investimento considereresti sostenibile per il tuo percorso?</h2>
+      <p class="lead">Mi aiuta a capire quale soluzione può essere realmente adatta a te, senza perdere tempo da nessuna delle due parti.</p>
+      <div class="opts" data-k="budget" data-req>
+        <button class="opt" data-v="Meno di 70 €"><span class="tx"><span class="tt">Meno di 70 €</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="70–120 €"><span class="tx"><span class="tt">70 – 120 €</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="120–200 €"><span class="tx"><span class="tt">120 – 200 €</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Oltre 200 €"><span class="tx"><span class="tt">Oltre 200 €</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="budget">Scegli un'opzione per continuare.</div>
+    </section>
+
+    <!-- 09 -->
+    <section class="scr" data-k="messaggio" data-q>
+      <div class="kick">09 · Raccontami</div>
+      <h2>Perché proprio adesso? Raccontami brevemente la tua situazione.</h2>
+      <p class="lead">Facoltativo, ma è la risposta che leggo con più attenzione.</p>
+      <div class="fields">
+        <div class="f"><label for="messaggio" class="hp">Messaggio</label><textarea id="messaggio" maxlength="800" placeholder="Es. “Mi alleno da due anni ma sono fermo da mesi. Vorrei arrivare all'estate con…”"></textarea></div>
+      </div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button><button class="skip" type="button" data-go="skip">Salta</button></div>
+    </section>
+
+    <!-- 10 -->
+    <section class="scr" data-k="contatti" data-q>
+      <div class="kick">10 · Contatti</div>
+      <h2>Dove posso ricontattarti?</h2>
+      <div class="fields">
+        <div class="f"><label for="nome">Nome</label><input id="nome" autocomplete="given-name" maxlength="60" data-rule="req"><div class="msg">Inserisci il tuo nome</div></div>
+        <div class="row2">
+          <div class="f"><label for="eta">Età</label><input id="eta" inputmode="numeric" pattern="[0-9]*" maxlength="2" data-rule="age"><div class="msg">Età non valida</div></div>
+          <div class="f"><label for="citta">Città</label><input id="citta" autocomplete="address-level2" maxlength="60" data-rule="req"><div class="msg">Inserisci la città</div></div>
+        </div>
+        <div class="f"><label for="telefono">WhatsApp</label><input id="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" placeholder="+39 333 123 4567" data-rule="tel"><div class="msg">Inserisci un numero valido</div></div>
+        <div class="f"><label for="instagram">Instagram <em>· facoltativo</em></label><input id="instagram" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="60" placeholder="@iltuonome"></div>
+        <div class="f"><label for="email">Email <em>· facoltativa</em></label><input id="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" maxlength="120" placeholder="nome@email.it" data-rule="email"><div class="msg">Email non valida</div></div>
+        <div class="hp" aria-hidden="true"><label for="sito">Sito</label><input id="sito" tabindex="-1" autocomplete="off"></div>
+        <div>
+          <div class="glabel" style="margin:6px 0 10px">Consenso al contatto</div>
+          <label class="chk"><input type="checkbox" id="consenso" data-rule="req"><span>Acconsento al trattamento dei miei dati per essere ricontattato da AQ Coaching in merito alla mia candidatura.</span></label>
+          <p class="small">I dati saranno utilizzati esclusivamente per gestire la candidatura e il successivo contatto, secondo quanto indicato nell'<button class="linkb" type="button" data-privacy>informativa privacy</button>.</p>
+        </div>
+      </div>
+      <div class="ferr" id="ferr" role="alert"></div>
+      <div class="act"><button class="btn" type="button" id="send">Invia candidatura</button></div>
+    </section>
+
+    <!-- fine -->
+    <section class="scr done" data-k="done">
+      <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#F2C14E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <div class="kick">Candidatura ricevuta</div>
+      <h2 id="doneT">Grazie, ci siamo.</h2>
+      <p class="lead">Ho ricevuto le tue risposte e le leggo personalmente.</p>
+      <ul class="nl">
+        <li><b>01</b><span>Analizzo obiettivo, esperienza e disponibilità.</span></li>
+        <li><b>02</b><span>Valuto se e come posso aiutarti.</span></li>
+        <li><b>03</b><span>Se ha senso approfondire, ti contatto personalmente per capire insieme quale soluzione è più adatta.</span></li>
+      </ul>
+      <div class="sign">A presto,<b>Antonio Aquino</b>Head Coach — AQ Coaching</div>
+    </section>
+  </main>
+</div>
+<script>
+/* AQ Coaching · motore dei moduli (navigazione, scelte, validazione, invio) */
+(function () {
+  'use strict';
+  var SUPABASE_URL = 'https://njmvwhvwmyxfupzdemhc.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_sW0VTnE5ZtBYrSEUsR9vZQ_p7Wk-gUK';
+
+  var A = window.AQF = { ans: {}, idx: 0, hooks: {}, checks: {} };
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  A.$ = $; A.$$ = $$;
+
+  A.val = function (id) { var e = document.getElementById(id); return e ? String(e.value || '').trim() : ''; };
+  A.get = function (k) { return A.ans[k]; };
+  A.fonte = (new URLSearchParams(location.search).get('src') || '').replace(/[^\w-]/g, '').slice(0, 40);
+
+  function screens() { return $$('.scr'); }
+  function qScreens() { return screens().filter(function (s) { return s.hasAttribute('data-q'); }); }
+
+  A.show = function (i, fromPop) {
+    var sc = screens();
+    i = Math.max(0, Math.min(sc.length - 1, i));
+    A.idx = i;
+    var cur = sc[i], key = cur.getAttribute('data-k');
+    if (A.hooks[key]) A.hooks[key](cur);
+    sc.forEach(function (s, j) { s.classList.toggle('on', j === i); });
+    var qs = qScreens(), qi = qs.indexOf(cur);
+    $('#back').hidden = qi < 0;
+    $('#prog').hidden = qi < 0;
+    $('#prog i').style.width = qi >= 0 ? ((qi + 1) / qs.length * 100) + '%' : '0';
+    window.scrollTo(0, 0);
+    if (!fromPop && history.pushState) history.pushState({ i: i }, '');
+  };
+  A.next = function () { if (A.validate(screens()[A.idx])) A.show(A.idx + 1); };
+  A.goKey = function (k) { var t = screens().findIndex(function (s) { return s.getAttribute('data-k') === k; }); if (t >= 0) A.show(t); };
+
+  /* --- scelte --- */
+  function paint(group) {
+    var k = group.getAttribute('data-k'), v = A.ans[k], multi = group.getAttribute('data-mode') === 'multi';
+    $$('.opt', group).forEach(function (o) {
+      var ov = o.getAttribute('data-v');
+      var on = multi ? (Array.isArray(v) && v.indexOf(ov) >= 0) : v === ov;
+      o.classList.toggle('sel', on);
+      o.setAttribute('aria-pressed', on ? 'true' : 'false');
+      var pc = o.closest('.pc'); if (pc) pc.classList.toggle('sel', on);
+    });
+  }
+  A.paint = function (k) { var g = $('.opts[data-k="' + k + '"]'); if (g) paint(g); };
+  A.bindOpts = function (root) {
+    $$('.opt', root).forEach(function (o) {
+      if (o._b) return; o._b = true;
+      o.setAttribute('type', 'button');
+      o.addEventListener('click', function () {
+        var g = o.closest('.opts'), k = g.getAttribute('data-k'), v = o.getAttribute('data-v');
+        if (g.getAttribute('data-mode') === 'multi') {
+          var arr = Array.isArray(A.ans[k]) ? A.ans[k].slice() : [];
+          var p = arr.indexOf(v); if (p >= 0) arr.splice(p, 1); else arr.push(v);
+          A.ans[k] = arr;
+        } else A.ans[k] = v;
+        paint(g);
+        var ge = g.parentNode.querySelector('.gerr[data-for="' + k + '"]'); if (ge) ge.classList.remove('on');
+        if (A.hooks.change) A.hooks.change(k);
+        var s = g.closest('.scr');
+        if (s.hasAttribute('data-auto') && g.getAttribute('data-mode') !== 'multi') setTimeout(function () { if (screens()[A.idx] === s) A.next(); }, 260);
+      });
+    });
+  };
+
+  /* --- validazione --- */
+  var RULES = {
+    req: function (v) { return v.length > 0; },
+    tel: function (v) { return v.replace(/\D/g, '').length >= 8 && v.length <= 25; },
+    age: function (v) { var n = parseInt(v, 10); return n >= 14 && n <= 90 && /^\d+$/.test(v); },
+    email: function (v) { return !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); },
+    emailreq: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  };
+  A.validate = function (s) {
+    var ok = true, first = null;
+    $$('.opts[data-req]', s).forEach(function (g) {
+      if (g.closest('[hidden]')) return;
+      var k = g.getAttribute('data-k'), v = A.ans[k];
+      var bad = !v || (Array.isArray(v) && !v.length);
+      var ge = g.parentNode.querySelector('.gerr[data-for="' + k + '"]'); if (ge) ge.classList.toggle('on', bad);
+      if (bad) { ok = false; first = first || g; }
+    });
+    $$('[data-rule]', s).forEach(function (el) {
+      if (el.closest('[hidden]')) return;
+      var bad;
+      if (el.type === 'checkbox') { bad = !el.checked; el.closest('.chk').classList.toggle('err', bad); }
+      else { bad = !RULES[el.getAttribute('data-rule')](String(el.value || '').trim()); var f = el.closest('.f'); if (f) f.classList.toggle('err', bad); }
+      if (bad) { ok = false; first = first || el; }
+    });
+    var key = s.getAttribute('data-k');
+    if (ok && A.checks[key]) ok = A.checks[key](s) !== false;
+    if (!ok && first && first.scrollIntoView) first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    return ok;
+  };
+  document.addEventListener('input', function (e) { var f = e.target.closest && e.target.closest('.f'); if (f) f.classList.remove('err'); });
+  document.addEventListener('change', function (e) { var c = e.target.closest && e.target.closest('.chk'); if (c) c.classList.remove('err'); });
+
+  /* --- invio --- */
+  A.send = function (table, body) {
+    return fetch(SUPABASE_URL + '/rest/v1/' + table, {
+      method: 'POST',
+      headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+      body: JSON.stringify(body)
+    }).then(function (r) { if (!r.ok) return r.text().then(function (t) { throw new Error(r.status + ' ' + t); }); });
+  };
+  A.submit = function (btn, label, table, build, onDone) {
+    var ferr = $('#ferr'); ferr.classList.remove('on');
+    if (!A.validate(screens()[A.idx])) return;
+    if (A.val('sito')) { onDone(); A.show(screens().length - 1); return; }
+    var body = build();
+    btn.disabled = true; btn.classList.add('busy'); btn.textContent = 'Invio in corso';
+    A.send(table, body).then(function () {
+      onDone(); A.show(screens().length - 1);
+      if (history.replaceState) history.replaceState({ i: A.idx }, '');
+    }).catch(function () {
+      ferr.textContent = 'Invio non riuscito. Controlla la connessione e riprova: le tue risposte sono ancora qui.';
+      ferr.classList.add('on');
+    }).then(function () { btn.disabled = false; btn.classList.remove('busy'); btn.textContent = label; });
+  };
+  A.ig = function (v) { v = String(v || '').trim().replace(/^(https?:\/\/)?(www\.)?instagram\.com\//i, '').replace(/[/?].*$/, '').replace(/^@+/, ''); return v ? '@' + v : null; };
+
+  /* --- informativa privacy --- */
+  A.privacy = function () {
+    var ov = document.createElement('div'); ov.className = 'ov';
+    ov.innerHTML = '<div class="sheet" role="dialog" aria-modal="true" aria-label="Informativa privacy">' +
+      '<h3>Informativa privacy</h3><p>Ai sensi del Regolamento UE 2016/679 (GDPR).</p>' +
+      '<h4>Titolare</h4><p>Antonio Aquino, AQ Coaching.</p>' +
+      '<h4>Dati raccolti</h4><p>I dati che inserisci nel modulo: nome, contatti, età, città e le risposte su obiettivi, allenamento e preferenze.</p>' +
+      '<h4>Finalità</h4><p>Valutare la tua richiesta, ricontattarti e, se decidi di iniziare, organizzare e gestire il percorso. I dati non vengono usati per pubblicità né ceduti a terzi.</p>' +
+      '<h4>Base giuridica</h4><p>Il tuo consenso e le misure precontrattuali che richiedi compilando il modulo.</p>' +
+      '<h4>Dove e per quanto</h4><p>I dati sono conservati su server nell\'Unione Europea (Francoforte) e accessibili solo al titolare, per il tempo necessario a gestire la richiesta e il successivo rapporto.</p>' +
+      '<h4>I tuoi diritti</h4><p>Puoi chiedere in qualsiasi momento accesso, correzione o cancellazione dei tuoi dati e revocare il consenso, scrivendo ad Antonio Aquino sugli stessi canali da cui ti ha contattato. Puoi anche presentare reclamo al Garante per la protezione dei dati personali.</p>' +
+      '<div class="act" style="padding-top:20px"><button class="btn" type="button">Ho capito</button></div></div>';
+    document.body.appendChild(ov);
+    var close = function () { ov.remove(); };
+    ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+    $('.btn', ov).addEventListener('click', close);
+  };
+
+  A.init = function () {
+    A.bindOpts(document);
+    $$('[data-go="next"]').forEach(function (b) { b.addEventListener('click', A.next); });
+    $$('[data-go="skip"]').forEach(function (b) { b.addEventListener('click', function () { A.show(A.idx + 1); }); });
+    $$('[data-privacy]').forEach(function (b) { b.addEventListener('click', function (e) { e.preventDefault(); A.privacy(); }); });
+    $('#back').addEventListener('click', function () { history.back(); });
+    window.addEventListener('popstate', function (e) {
+      var i = e.state && typeof e.state.i === 'number' ? e.state.i : 0;
+      if (A.idx === screens().length - 1) { history.pushState({ i: A.idx }, ''); return; } // inviato: resta sulla conferma
+      A.show(i, true);
+    });
+    if (history.replaceState) history.replaceState({ i: 0 }, '');
+    A.show(0, true);
+  };
+})();
+
+</script>
+<script>
+(function(){
+  var A = AQF;
+  A.init();
+  var btn = document.getElementById('send');
+  btn.addEventListener('click', function(){
+    var miss = ['obiettivo','esperienza','luogo','giorni','ostacolo','modalita','tempistica','budget']
+      .filter(function(k){ var v = A.ans[k]; return !v || (Array.isArray(v) && !v.length); })[0];
+    if (miss) { A.goKey(miss); return; }
+    A.submit(btn, 'Invia candidatura', 'leads', function(){
+      return {
+        nome: A.val('nome'), eta: parseInt(A.val('eta'), 10), citta: A.val('citta'),
+        telefono: A.val('telefono'), instagram: A.ig(A.val('instagram')), email: A.val('email') || null,
+        obiettivo: A.ans.obiettivo, esperienza: A.ans.esperienza, luogo: A.ans.luogo, giorni: A.ans.giorni,
+        ostacolo: A.ans.ostacolo, modalita: A.ans.modalita, tempistica: A.ans.tempistica, budget: A.ans.budget,
+        messaggio: A.val('messaggio') || null, consenso: true, fonte: A.fonte || 'instagram_bio'
+      };
+    }, function(){
+      document.getElementById('doneT').textContent = 'Grazie ' + (A.val('nome') || '') + ', ci siamo.';
+    });
+  });
+})();
+</script>
+</body>
+</html>

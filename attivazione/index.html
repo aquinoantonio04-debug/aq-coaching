@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AQ Coaching · Attivazione del percorso</title>
+<meta name="description" content="Attivazione del percorso AQ Coaching con Head Coach Antonio Aquino.">
+<meta name="theme-color" content="#050607">
+<meta property="og:title" content="AQ Coaching · Attivazione del percorso">
+<meta property="og:description" content="Hai già deciso di iniziare? Attiva il tuo percorso AQ Coaching.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23050607%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22%23F2C14E%22%20stroke-width%3D%223%22%20fill%3D%22none%22%20stroke-dasharray%3D%22160%2036%2036%2018%22/%3E%3Cpath%20d%3D%22M33%2067L48%2027H54L69%2067%22%20stroke%3D%22%23fff%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22/%3E%3Cpath%20d%3D%22M40%2054H62%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22/%3E%3Ccircle%20cx%3D%2261%22%20cy%3D%2258%22%20r%3D%2213%22%20stroke%3D%22%23F2C14E%22%20stroke-width%3D%225%22%20fill%3D%22%23111418%22/%3E%3Cpath%20d%3D%22M67%2066L77%2076%22%20stroke%3D%22%23F2C14E%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" type="image/svg+xml">
+<style>
+/* AQ Coaching · moduli pubblici · stile Client System (nero / oro) */
+:root{
+  --bg:#050607;--surf:#0B0D10;--card:#111418;--pan:#171A1F;--ln:#22262D;--ln2:#2C313A;
+  --tx:#F4F1E8;--mu:#A9A9A4;--mu2:#707278;
+  --gold:#F2C14E;--gold2:#B98220;--goldHi:#FFD86A;--goldRGB:242,193,78;
+  --grad:linear-gradient(135deg,#B98220 0%,#F2C14E 55%,#FFD86A 100%);
+  --onGold:#0B0906;--bad:#E5534B;--badTx:#F08A84;
+  --r:12px;--r-sm:8px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%}
+body{
+  background:radial-gradient(1000px 380px at 50% -140px,rgba(var(--goldRGB),.10),transparent 70%),var(--bg);
+  background-attachment:fixed;color:var(--tx);
+  font:16px/1.5 Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased;font-feature-settings:"cv11","ss01";
+}
+button,input,textarea{font:inherit;color:inherit}
+a{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.app{min-height:100vh;min-height:100dvh;max-width:540px;margin:0 auto;display:flex;flex-direction:column;
+  padding:0 18px calc(env(safe-area-inset-bottom,0px) + 20px)}
+
+/* barra superiore come il CS */
+.hd{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;min-height:56px;
+  margin:0 -18px;padding:calc(env(safe-area-inset-top,0px) + 6px) 18px 6px;
+  background:rgba(5,6,7,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.hd::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--gold) 0%,rgba(var(--goldRGB),.45) 35%,rgba(var(--goldRGB),0) 85%)}
+.hd svg.lg{width:26px;height:26px;flex:none}
+.hd .mk{font:800 12.5px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.hd .mk b{color:var(--gold);margin-left:.3em}
+.hd .back{margin-left:auto;background:none;border:0;color:var(--mu);font-size:14px;font-weight:600;
+  min-height:44px;padding:0 2px 0 8px;cursor:pointer;display:flex;align-items:center;gap:4px}
+.hd .back svg{width:18px;height:18px}
+.prog{height:2px;background:var(--pan);margin:0 -18px}
+.prog i{display:block;height:100%;width:0;background:var(--grad);transition:width .35s ease}
+[hidden]{display:none!important}
+
+/* schermate */
+.stage{flex:1;display:flex;flex-direction:column}
+.scr{display:none;flex-direction:column;flex:1;padding-top:26px;animation:in .35s ease}
+.scr.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.kick{font:700 11px/1 Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.kick::after{content:"";width:28px;height:1px;background:rgba(var(--goldRGB),.55)}
+h1{font:800 31px/1.12 Cinzel,Georgia,serif;letter-spacing:.1em;margin:0;color:#fff}
+h2{font:700 23px/1.25 Inter,sans-serif;letter-spacing:-.015em;margin:0;color:#fff;text-wrap:balance}
+.lead{color:var(--mu);font-size:15px;margin:10px 0 0;line-height:1.55}
+.lead b{color:var(--tx);font-weight:600}
+
+/* splash (identico al CS) */
+.splash{justify-content:center;align-items:center;text-align:center;padding-top:20px}
+.splash .logo{width:84px;height:84px;margin-bottom:14px}
+.splash .sub{color:var(--gold);font:700 11px/1 Inter,sans-serif;letter-spacing:.24em;margin-top:10px;text-transform:uppercase}
+.splash .dv{width:46px;height:1px;background:var(--gold);margin:20px auto 16px}
+.splash h2{font-size:21px;margin-bottom:2px}
+.splash .lead{max-width:360px;margin-left:auto;margin-right:auto}
+.foot{color:var(--mu2);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-top:22px;text-align:center}
+
+/* elenchi numerati editoriali */
+.nl{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;text-align:left;width:100%;
+  border:1px solid var(--ln);border-radius:var(--r);background:var(--card)}
+.nl li{display:flex;gap:14px;align-items:baseline;padding:13px 15px;border-top:1px solid var(--ln);font-size:14.5px;line-height:1.45}
+.nl li:first-child{border-top:0}
+.nl li b{flex:none;font:700 13px/1 Cinzel,serif;color:var(--gold);letter-spacing:.06em;width:20px}
+.bl{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:7px}
+.bl li{position:relative;padding-left:16px;font-size:14px;color:var(--tx);line-height:1.45}
+.bl li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:1px;background:var(--gold)}
+.note{font-size:13px;color:var(--mu);line-height:1.5;margin-top:14px;padding:11px 13px;border-left:2px solid var(--gold);background:var(--surf);border-radius:0 var(--r-sm) var(--r-sm) 0}
+
+/* opzioni */
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:22px}
+.glabel{font-size:13px;font-weight:600;color:var(--tx);margin:22px 0 -12px}
+.glabel+.opts{margin-top:20px}
+.opt{position:relative;display:flex;align-items:center;gap:14px;width:100%;text-align:left;min-height:58px;padding:13px 15px;
+  background:var(--card);border:1px solid var(--ln);border-radius:var(--r);cursor:pointer;
+  transition:border-color .15s,background .15s,transform .1s}
+.opt:active{transform:scale(.988)}
+.opt .tx{flex:1;min-width:0}
+.opt .tt,.opt .ds{display:block}
+.opt .tt{font-weight:600;font-size:15.5px;color:#fff;line-height:1.3}
+.opt .ds{font-size:13px;color:var(--mu);margin-top:3px;line-height:1.4}
+.opt .ind{flex:none;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--ln2);display:grid;place-items:center;transition:all .15s}
+.opts[data-mode=multi] .opt .ind{border-radius:5px}
+.opt.sel{border-color:rgba(var(--goldRGB),.7);background:linear-gradient(180deg,rgba(var(--goldRGB),.10),rgba(var(--goldRGB),.03)),var(--card);box-shadow:inset 3px 0 0 var(--gold)}
+.opt.sel .ind{border-color:var(--gold);background:var(--gold)}
+.opt.sel .ind::after{content:"";width:9px;height:5px;border:2px solid var(--onGold);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+@media(hover:hover){.opt:hover{border-color:rgba(var(--goldRGB),.45)}}
+.opts.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.opts.g4 .opt{flex-direction:column;justify-content:center;text-align:center;min-height:76px;padding:10px 6px;gap:2px}
+.opts.g4 .opt .tt{font:700 24px/1 Inter,sans-serif;font-variant-numeric:tabular-nums}
+.opts.g4 .opt .ds{margin-top:4px;font-size:11.5px}
+.opts.g4 .opt .ind{display:none}
+.opts.g4 .opt.sel{box-shadow:inset 0 2px 0 var(--gold)}
+.gerr{display:none;font-size:13px;color:var(--badTx);margin-top:10px}
+.gerr.on{display:block}
+
+/* card percorso */
+.pc{background:var(--card);border:1px solid var(--ln);border-radius:var(--r);overflow:hidden;transition:border-color .15s}
+.pc.sel{border-color:rgba(var(--goldRGB),.7);box-shadow:inset 3px 0 0 var(--gold);background:linear-gradient(180deg,rgba(var(--goldRGB),.08),rgba(var(--goldRGB),0) 70%),var(--card)}
+.pc .opt{border:0;border-radius:0;background:none;box-shadow:none;align-items:flex-start;padding:15px 15px 12px}
+.pc .opt.sel{background:none;box-shadow:none}
+.pc .opt .ind{margin-top:2px}
+.pc .nm{font:800 12px/1 Inter,sans-serif;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.pc .more{display:flex;align-items:center;gap:6px;width:100%;background:none;border:0;border-top:1px solid var(--ln);color:var(--mu);
+  font-size:13px;font-weight:600;padding:0 15px;min-height:44px;cursor:pointer;text-align:left}
+.pc .more svg{width:14px;height:14px;transition:transform .2s}
+.pc.open .more svg{transform:rotate(180deg)}
+.pc .det{display:none;padding:2px 15px 15px}
+.pc.open .det{display:block}
+.pc .det .dl{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mu2);margin-top:8px}
+
+/* campi */
+.fields{display:flex;flex-direction:column;gap:14px;margin-top:22px}
+.f label{display:block;font-size:12.5px;font-weight:600;color:var(--mu);margin:0 0 7px}
+.f label em{font-style:normal;color:var(--mu2);font-weight:500}
+.f input,.f textarea{width:100%;min-height:52px;background:var(--bg);border:1px solid var(--ln);border-radius:var(--r-sm);
+  padding:13px 14px;font-size:16px;outline:none;transition:border-color .15s,box-shadow .15s}
+.f textarea{min-height:128px;resize:vertical;line-height:1.5}
+.f input:focus,.f textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(var(--goldRGB),.16)}
+.f input::placeholder,.f textarea::placeholder{color:#4E5058}
+.f .hint{font-size:12.5px;color:var(--mu2);margin-top:7px;line-height:1.45}
+.f .msg{display:none;font-size:12.5px;color:var(--badTx);margin-top:6px}
+.f.err input,.f.err textarea{border-color:var(--bad)}
+.f.err .msg{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--tx);line-height:1.5;cursor:pointer;
+  padding:14px;border:1px solid var(--ln);border-radius:var(--r);background:var(--card)}
+.chk input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--gold)}
+.chk.err{border-color:var(--bad)}
+.small{font-size:12.5px;color:var(--mu2);line-height:1.5;margin-top:10px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* riepilogo */
+.kv{border:1px solid var(--ln);border-radius:var(--r);background:var(--card);margin-top:20px}
+.kv div{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 15px;border-top:1px solid var(--ln)}
+.kv div:first-child{border-top:0}
+.kv span{font-size:12.5px;color:var(--mu2);font-weight:500;flex:none}
+.kv strong{font-size:14.5px;color:var(--tx);font-weight:600;text-align:right;overflow-wrap:anywhere}
+
+/* azioni */
+.act{margin-top:auto;padding-top:26px}
+.btn{width:100%;min-height:56px;border:0;border-radius:var(--r);background:var(--grad);color:var(--onGold);
+  font:800 13.5px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px}
+.btn:active{transform:scale(.988)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn.busy::after{content:"";width:15px;height:15px;border:2px solid var(--onGold);border-right-color:transparent;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.btn2{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:50px;margin-top:10px;
+  border:1px solid var(--ln2);border-radius:var(--r);background:var(--pan);color:var(--tx);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:none}
+.btn2 svg{width:16px;height:16px;color:var(--gold)}
+.skip{display:block;margin:10px auto 0;background:none;border:0;color:var(--mu);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;min-height:44px;padding:0 16px;cursor:pointer}
+.ferr{display:none;margin-top:12px;font-size:13.5px;color:var(--badTx);background:rgba(229,83,75,.08);border:1px solid rgba(229,83,75,.35);border-radius:var(--r-sm);padding:12px 14px;line-height:1.45}
+.ferr.on{display:block}
+.linkb{background:none;border:0;padding:0;color:var(--gold);font:inherit;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+
+/* schermata finale */
+.done{justify-content:center;text-align:center}
+.done .ok{width:72px;height:72px;border-radius:50%;border:1px solid rgba(var(--goldRGB),.6);background:rgba(var(--goldRGB),.08);display:grid;place-items:center;margin:0 auto 22px}
+.done .ok svg{width:30px;height:30px}
+.done .kick{justify-content:center}
+.done .kick::after{display:none}
+.done .nl{margin-top:24px}
+.sign{margin-top:24px;font-size:14px;color:var(--mu);line-height:1.6}
+.sign b{display:block;font:700 15px/1.3 Cinzel,serif;color:#fff;letter-spacing:.06em;margin-top:6px}
+
+/* foglio informativa */
+.ov{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.72);display:flex;align-items:flex-end;justify-content:center}
+.sheet{width:100%;max-width:540px;max-height:86vh;overflow:auto;background:var(--card);border:1px solid rgba(var(--goldRGB),.28);border-bottom:0;
+  border-radius:18px 18px 0 0;padding:20px 18px calc(env(safe-area-inset-bottom,0px) + 20px)}
+.sheet h3{margin:0 0 4px;font:700 15px/1.3 Cinzel,serif;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+.sheet h4{margin:16px 0 4px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.sheet p{margin:0;font-size:14px;color:var(--mu);line-height:1.55}
+@media(min-width:600px){.ov{align-items:center}.sheet{border-radius:18px;border-bottom:1px solid rgba(var(--goldRGB),.28)}}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(min-width:700px){.scr{padding-top:40px}h1{font-size:34px}h2{font-size:26px}}
+@media(max-width:360px){.opts.g4 .opt .tt{font-size:20px}h1{font-size:26px}}
+
+/* ===== Linguaggio visivo del Client System (card oro, barre oro, selezioni piene) ===== */
+body{background:radial-gradient(900px 420px at 50% -120px,rgba(var(--goldRGB),.16),transparent 70%),var(--bg)}
+/* intestazione come il CS: AQ COACHING + riga di contesto */
+.hd{min-height:64px;border-bottom:1px solid rgba(var(--goldRGB),.18)}
+.hd::after{height:2px;background:linear-gradient(90deg,var(--gold) 0%,rgba(var(--goldRGB),.55) 40%,rgba(var(--goldRGB),.12) 100%)}
+.hd svg.lg{width:34px;height:34px}
+.hd .brand{display:flex;flex-direction:column;gap:5px;min-width:0}
+.hd .mk{font-size:14px;letter-spacing:.14em}
+.hd .ctx{font:600 10.5px/1.2 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog{height:3px;margin-top:0}
+.prog i{box-shadow:0 0 12px rgba(var(--goldRGB),.6)}
+
+/* etichetta domanda come pill oro + titolo con barra oro a sinistra */
+.kick{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(var(--goldRGB),.55);border-radius:999px;
+  background:rgba(var(--goldRGB),.08);font-size:10.5px;letter-spacing:.18em;margin-bottom:16px}
+.kick::after{display:none}
+.kick::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px rgba(var(--goldRGB),.8)}
+.scr:not(.splash):not(.done)>h2{padding-left:14px;border-left:3px solid var(--gold)}
+.glabel{padding-left:10px;border-left:3px solid var(--gold);line-height:1.2}
+
+/* opzioni come le card KPI del CS */
+.opt{border:1px solid rgba(var(--goldRGB),.38);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.09),rgba(var(--goldRGB),0) 65%),var(--card);
+  box-shadow:inset 0 2px 0 rgba(var(--goldRGB),.85);overflow:hidden}
+.opt .ind{border-color:rgba(var(--goldRGB),.6)}
+@media(hover:hover){.opt:hover{border-color:var(--gold)}}
+.opt.sel{border-color:var(--gold);background:var(--grad);box-shadow:0 8px 26px rgba(var(--goldRGB),.28)}
+.opt.sel .tt{color:var(--onGold)}
+.opt.sel .ds{color:rgba(11,9,6,.72)}
+.opt.sel .ind{background:var(--onGold);border-color:var(--onGold)}
+.opt.sel .ind::after{border-color:var(--gold)}
+.opts.g4 .opt{box-shadow:inset 0 2px 0 rgba(var(--goldRGB),.85)}
+.opts.g4 .opt .ds{color:var(--gold)}
+.opts.g4 .opt.sel{box-shadow:0 8px 26px rgba(var(--goldRGB),.28)}
+.opts.g4 .opt.sel .ds{color:rgba(11,9,6,.72)}
+
+/* card percorso */
+.pc{border:1px solid rgba(var(--goldRGB),.38);box-shadow:inset 0 2px 0 rgba(var(--goldRGB),.85);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.09),rgba(var(--goldRGB),0) 55%),var(--card)}
+.pc .opt,.pc .opt.sel{border:0;box-shadow:none;background:none}
+.pc .opt.sel .tt{color:#fff}.pc .opt.sel .ds{color:var(--mu)}
+.pc .opt.sel .ind{background:var(--gold);border-color:var(--gold)}
+.pc .opt.sel .ind::after{border-color:var(--onGold)}
+.pc.sel{border-color:var(--gold);box-shadow:inset 0 3px 0 var(--gold),0 8px 26px rgba(var(--goldRGB),.22);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.2),rgba(var(--goldRGB),.04) 70%),var(--card)}
+.pc .nm{font-size:13px}
+.pc .more{color:var(--gold);border-top-color:rgba(var(--goldRGB),.22)}
+
+/* campi, riquadri, elenchi */
+.f label{color:var(--gold);letter-spacing:.04em}
+.f label em{color:var(--mu2)}
+.f input,.f textarea{border-color:rgba(var(--goldRGB),.28);background:#08090B}
+.chk{border-color:rgba(var(--goldRGB),.42);box-shadow:inset 0 2px 0 rgba(var(--goldRGB),.85);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.08),rgba(var(--goldRGB),0) 65%),var(--card)}
+.nl,.kv{border-color:rgba(var(--goldRGB),.42);box-shadow:inset 0 2px 0 var(--gold);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.09),rgba(var(--goldRGB),0) 60%),var(--card)}
+.nl li,.kv div{border-top-color:rgba(var(--goldRGB),.14)}
+.kv span{color:var(--gold)}
+.note{border-left-width:3px;background:linear-gradient(90deg,rgba(var(--goldRGB),.1),rgba(var(--goldRGB),.02)),var(--card);color:var(--tx)}
+.btn{box-shadow:0 10px 30px rgba(var(--goldRGB),.3)}
+.btn2{border-color:rgba(var(--goldRGB),.55);color:var(--gold);background:rgba(var(--goldRGB),.08)}
+.intro-box{border:1px solid rgba(var(--goldRGB),.42)!important;box-shadow:inset 0 2px 0 var(--gold);
+  background:linear-gradient(180deg,rgba(var(--goldRGB),.09),rgba(var(--goldRGB),0) 60%),var(--card)!important}
+
+/* splash come il CS */
+.splash h1{text-shadow:0 0 30px rgba(var(--goldRGB),.18)}
+.splash .logo{filter:drop-shadow(0 0 18px rgba(var(--goldRGB),.35))}
+.done .ok{background:var(--grad);border-color:var(--gold);box-shadow:0 0 30px rgba(var(--goldRGB),.4)}
+.done .ok svg path{stroke:var(--onGold)}
+.done .kick{align-self:center}
+.sign b{color:var(--gold)}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hd">
+    <svg class="lg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="45" stroke="#22262D" stroke-width="3" fill="none"/><circle cx="50" cy="50" r="45" stroke="#F2C14E" stroke-width="3" fill="none" stroke-dasharray="180 40 40 20"/><path d="M32 68L48 24H54L70 68" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M39 54H63" stroke="#fff" stroke-width="5"/><circle cx="62" cy="58" r="15" stroke="#F2C14E" stroke-width="6" fill="#111418"/><path d="M69 67L81 79" stroke="#F2C14E" stroke-width="6" stroke-linecap="round"/></svg>
+    <span class="brand"><span class="mk">AQ<b>Coaching</b></span><span class="ctx">Attivazione del percorso</span></span>
+    <button class="back" id="back" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Indietro</button>
+  </header>
+  <div class="prog" id="prog" hidden><i></i></div>
+
+  <main class="stage">
+
+    <!-- intro -->
+    <section class="scr splash" data-k="intro">
+      <svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="45" stroke="#22262D" stroke-width="2" fill="none"/><circle cx="50" cy="50" r="45" stroke="#F2C14E" stroke-width="2" fill="none" stroke-dasharray="180 40 40 20"/><path d="M32 68L48 24H54L70 68" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M39 54H63" stroke="#fff" stroke-width="4"/><circle cx="62" cy="58" r="15" stroke="#F2C14E" stroke-width="5" fill="#111418"/><path d="M69 67L81 79" stroke="#F2C14E" stroke-width="5" stroke-linecap="round"/></svg>
+      <h1>AQ COACHING</h1>
+      <div class="sub">Attivazione del percorso</div>
+      <div class="dv"></div>
+      <h2>Hai già deciso di iniziare?</h2>
+      <p class="lead">Questo modulo è pensato per chi ha già scelto di intraprendere un percorso con AQ Coaching e vuole procedere con l'attivazione.</p>
+      <div class="intro-box" style="width:100%;text-align:left;margin-top:20px;border-radius:var(--r);padding:14px 15px">
+        <div class="glabel" style="margin:0">Qui puoi</div>
+        <ul class="bl">
+          <li>scegliere la modalità di coaching</li>
+          <li>indicare la durata che preferisci</li>
+          <li>fornire i dati necessari per iniziare</li>
+          <li>preparare il tuo accesso al Client System</li>
+          <li>indicare l'account Claude che utilizzerai per accedere al sistema</li>
+        </ul>
+      </div>
+      <div class="note" style="text-align:left;width:100%">Non è necessario completare il modulo se stai ancora valutando se iniziare. Se invece hai già deciso, puoi procedere direttamente. Puoi comunque interrompere la procedura in qualsiasi momento prima della conferma definitiva.</div>
+      <div class="act" style="width:100%"><button class="btn" type="button" data-go="next">Inizia</button></div>
+      <div class="foot">Head Coach — Antonio Aquino</div>
+    </section>
+
+    <!-- 01 percorso -->
+    <section class="scr" data-k="percorso" data-q>
+      <div class="kick">01 · Quale percorso vuoi?</div>
+      <h2>Quale modalità descrive meglio ciò che stai cercando?</h2>
+      <div class="opts" data-k="percorso" data-req>
+        <div class="pc">
+          <button class="opt" data-v="ENTRY"><span class="tx"><span class="nm">Entry</span><span class="tt">Programmazione + Manuale AQ</span><span class="ds">Per chi vuole una programmazione personalizzata e gli strumenti per imparare progressivamente a gestire il proprio allenamento in autonomia.</span></span><span class="ind"></span></button>
+          <button class="more" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>Cosa comprende</button>
+          <div class="det"><ul class="bl"><li>Programmazione personalizzata</li><li>Manuale AQ</li><li>Struttura degli allenamenti</li><li>Indicazioni tecniche e operative</li><li>Organizzazione della progressione</li><li>Strumenti per sviluppare autonomia</li></ul></div>
+        </div>
+        <div class="pc">
+          <button class="opt" data-v="ONLINE"><span class="tx"><span class="nm">Online</span><span class="tt">Coaching online</span><span class="ds">Per chi vuole essere seguito continuativamente attraverso programmazione, monitoraggio e adattamento del percorso.</span></span><span class="ind"></span></button>
+          <button class="more" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>Cosa comprende</button>
+          <div class="det"><ul class="bl"><li>Programmazione personalizzata</li><li>Monitoraggio degli allenamenti</li><li>Analisi dei dati</li><li>Gestione di carichi, ripetizioni e RIR</li><li>Check periodici</li><li>Analisi dei progressi</li><li>Aggiornamento della programmazione</li><li>Comunicazione con il coach</li><li>Supporto tecnico</li><li>Percorso orientato all'autonomia</li></ul></div>
+        </div>
+        <div class="pc">
+          <button class="opt" data-v="PREMIUM"><span class="tx"><span class="nm">Premium</span><span class="tt">Online + presenza</span><span class="ds">Per chi vuole integrare il coaching online con il lavoro diretto in palestra.</span></span><span class="ind"></span></button>
+          <button class="more" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>Cosa comprende</button>
+          <div class="det"><div class="dl">Pensato in particolare per lavorare su</div><ul class="bl"><li>Tecnica</li><li>Esecuzione</li><li>Impostazione dei movimenti</li><li>Applicazione pratica della programmazione</li><li>Correzione degli errori</li><li>Progressione</li><li>Autonomia</li></ul><p class="small">Comprende il coaching online con l'integrazione delle sedute in presenza previste dal percorso.</p></div>
+        </div>
+        <div class="pc">
+          <button class="opt" data-v="PRESENZA"><span class="tx"><span class="nm">Presenza</span><span class="tt">Sedute individuali</span><span class="ds">Per chi vuole lavorare direttamente con Antonio in palestra.</span></span><span class="ind"></span></button>
+          <button class="more" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>Cosa comprende</button>
+          <div class="det"><div class="dl">Particolarmente indicato per</div><ul class="bl"><li>Imparare gli esercizi</li><li>Migliorare la tecnica</li><li>Correggere l'esecuzione</li><li>Capire come gestire i movimenti</li><li>Sviluppare autonomia in sala pesi</li></ul></div>
+        </div>
+      </div>
+      <div class="gerr" data-for="percorso">Scegli un percorso per continuare.</div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 02 durata -->
+    <section class="scr" data-k="durata" data-q data-auto>
+      <div class="kick">02 · Durata</div>
+      <h2>Per quanto tempo vorresti iniziare?</h2>
+      <p class="lead">Le durate disponibili dipendono dal percorso selezionato: <b id="durP"></b>.</p>
+      <div class="opts" data-k="durata" data-req id="durOpts"></div>
+      <div class="gerr" data-for="durata">Scegli una durata per continuare.</div>
+    </section>
+
+    <!-- 03 partenza -->
+    <section class="scr" data-k="partenza" data-q data-auto>
+      <div class="kick">03 · Modalità di partenza</div>
+      <h2>Quale situazione ti rappresenta?</h2>
+      <div class="opts" data-k="partenza" data-req>
+        <button class="opt" data-v="Ho già deciso e voglio procedere"><span class="tx"><span class="tt">Ho già deciso e voglio procedere</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Ho scelto il percorso, ma voglio una conferma prima"><span class="tx"><span class="tt">Ho scelto il percorso, ma voglio una conferma prima</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Ho qualche dubbio, preferisco parlare con Antonio"><span class="tx"><span class="tt">Ho ancora qualche dubbio e preferisco parlare con Antonio</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="partenza">Scegli un'opzione per continuare.</div>
+      <div class="note">Se scegli una delle ultime due opzioni, la richiesta viene trattata come richiesta di contatto e non come conferma definitiva.</div>
+    </section>
+
+    <!-- 04 account Claude -->
+    <section class="scr" data-k="claude" data-q>
+      <div class="kick">04 · Account Claude</div>
+      <h2>Crea il tuo account Claude</h2>
+      <p class="lead">Per utilizzare il Client System durante il percorso è necessario avere un account Claude gratuito. Se non ne hai ancora uno, puoi crearne uno gratuitamente prima di proseguire.</p>
+      <div class="glabel">Hai già creato il tuo account Claude?</div>
+      <div class="opts" data-k="claude" data-req>
+        <button class="opt" data-v="si"><span class="tx"><span class="tt">Sì</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="no"><span class="tx"><span class="tt">Non ancora</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="claude">Scegli un'opzione per continuare.</div>
+      <div id="claudeNo" hidden>
+        <a class="btn2" href="https://claude.ai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Crea l'account gratuito su claude.ai</a>
+        <p class="small">Si apre in una nuova scheda. Quando hai finito, torna qui e inserisci l'email che hai usato.</p>
+      </div>
+      <div class="fields">
+        <div class="f"><label for="claude_email">Email utilizzata per il tuo account Claude</label><input id="claude_email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" maxlength="120" placeholder="nome@email.it" data-rule="emailreq"><div class="msg">Inserisci un'email valida</div>
+          <div class="hint">Inserisci esattamente l'indirizzo email con cui hai creato il tuo account Claude. Questa email verrà utilizzata per collegarti al Client System e per inviarti direttamente le comunicazioni di benvenuto relative al percorso.</div>
+          <div class="hint" style="color:var(--gold)">Non inserire password o altri dati di accesso.</div>
+        </div>
+      </div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 05 dati -->
+    <section class="scr" data-k="dati" data-q>
+      <div class="kick">05 · I tuoi dati</div>
+      <h2>Informazioni necessarie per preparare il percorso</h2>
+      <div class="fields">
+        <div class="row2">
+          <div class="f"><label for="nome">Nome</label><input id="nome" autocomplete="given-name" maxlength="60" data-rule="req"><div class="msg">Inserisci il nome</div></div>
+          <div class="f"><label for="cognome">Cognome</label><input id="cognome" autocomplete="family-name" maxlength="60" data-rule="req"><div class="msg">Inserisci il cognome</div></div>
+        </div>
+        <div class="row2">
+          <div class="f"><label for="eta">Età</label><input id="eta" inputmode="numeric" pattern="[0-9]*" maxlength="2" data-rule="age"><div class="msg">Età non valida</div></div>
+          <div class="f"><label for="citta">Città</label><input id="citta" autocomplete="address-level2" maxlength="60" data-rule="req"><div class="msg">Inserisci la città</div></div>
+        </div>
+        <div class="f"><label for="telefono">WhatsApp</label><input id="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" placeholder="+39 333 123 4567" data-rule="tel"><div class="msg">Inserisci un numero valido</div></div>
+        <div class="f"><label for="instagram">Instagram <em>· facoltativo</em></label><input id="instagram" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="60" placeholder="@iltuonome"></div>
+        <div class="f"><label for="email">Email personale <em>· facoltativa</em></label><input id="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" maxlength="120" placeholder="nome@email.it" data-rule="email"><div class="msg">Email non valida</div></div>
+        <div class="hp" aria-hidden="true"><label for="sito">Sito</label><input id="sito" tabindex="-1" autocomplete="off"></div>
+      </div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 06 obiettivo -->
+    <section class="scr" data-k="obiettivo" data-q>
+      <div class="kick">06 · Il tuo obiettivo</div>
+      <h2>Cosa vuoi ottenere attraverso questo percorso?</h2>
+      <p class="lead">Puoi scegliere più opzioni.</p>
+      <div class="opts" data-k="obiettivi" data-mode="multi" data-req>
+        <button class="opt" data-v="Massa muscolare"><span class="tx"><span class="tt">Massa muscolare</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Ricomposizione corporea"><span class="tx"><span class="tt">Ricomposizione corporea</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Dimagrimento"><span class="tx"><span class="tt">Dimagrimento</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Forza / performance"><span class="tx"><span class="tt">Forza / performance</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Miglioramento tecnico"><span class="tx"><span class="tt">Miglioramento tecnico</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Maggiore autonomia in palestra"><span class="tx"><span class="tt">Maggiore autonomia in palestra</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Altro"><span class="tx"><span class="tt">Altro</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="obiettivi">Scegli almeno un'opzione per continuare.</div>
+      <div class="fields">
+        <div class="f"><label for="obiettivo_testo">Raccontami brevemente cosa vuoi ottenere <em>· facoltativo</em></label><textarea id="obiettivo_testo" maxlength="800"></textarea></div>
+      </div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 07 esperienza -->
+    <section class="scr" data-k="esperienza" data-q>
+      <div class="kick">07 · La tua esperienza</div>
+      <h2>Da quanto tempo ti alleni?</h2>
+      <div class="opts" data-k="esperienza" data-req>
+        <button class="opt" data-v="Mai o quasi mai"><span class="tx"><span class="tt">Mai o quasi mai</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Meno di 1 anno"><span class="tx"><span class="tt">Meno di 1 anno</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="1–3 anni"><span class="tx"><span class="tt">1–3 anni</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Più di 3 anni"><span class="tx"><span class="tt">Più di 3 anni</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="esperienza">Scegli un'opzione.</div>
+      <div class="glabel">Quanti giorni a settimana prevedi realisticamente di allenarti?</div>
+      <div class="opts g4" data-k="giorni" data-req>
+        <button class="opt" data-v="2"><span class="tt">2</span><span class="ds">giorni</span><span class="ind"></span></button>
+        <button class="opt" data-v="3"><span class="tt">3</span><span class="ds">giorni</span><span class="ind"></span></button>
+        <button class="opt" data-v="4"><span class="tt">4</span><span class="ds">giorni</span><span class="ind"></span></button>
+        <button class="opt" data-v="5+"><span class="tt">5+</span><span class="ds">giorni</span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="giorni">Scegli quanti giorni.</div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 08 dove -->
+    <section class="scr" data-k="luogo" data-q>
+      <div class="kick">08 · Dove ti alleni?</div>
+      <h2>Dove svolgerai principalmente il percorso?</h2>
+      <div class="opts" data-k="luogo" data-req>
+        <button class="opt" data-v="Palestra"><span class="tx"><span class="tt">Palestra</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Casa"><span class="tx"><span class="tt">Casa</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="Altro"><span class="tx"><span class="tt">Altro</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="luogo">Scegli un'opzione per continuare.</div>
+      <div class="fields" id="palestraBox" hidden>
+        <div class="f"><label for="palestra">Nome della palestra <em>· facoltativo</em></label><input id="palestra" maxlength="80"></div>
+      </div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 09 info utili -->
+    <section class="scr" data-k="info" data-q>
+      <div class="kick">09 · Informazioni utili</div>
+      <h2>C'è qualcosa che dovrei sapere prima di iniziare?</h2>
+      <p class="lead">Puoi indicare eventuali limitazioni, esigenze particolari o informazioni utili per organizzare il lavoro.</p>
+      <div class="fields">
+        <div class="f"><label for="info_utili" class="hp">Informazioni utili</label><textarea id="info_utili" maxlength="1200" placeholder="Facoltativo"></textarea></div>
+      </div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button><button class="skip" type="button" data-go="skip">Salta</button></div>
+    </section>
+
+    <!-- 10 investimento e conferma -->
+    <section class="scr" data-k="conferma" data-q>
+      <div class="kick">10 · Investimento e conferma</div>
+      <h2>Hai già ricevuto da AQ Coaching le informazioni relative all'investimento del percorso scelto?</h2>
+      <div class="opts" data-k="investimento" data-req>
+        <button class="opt" data-v="si"><span class="tx"><span class="tt">Sì, ho già ricevuto e verificato le informazioni</span></span><span class="ind"></span></button>
+        <button class="opt" data-v="no"><span class="tx"><span class="tt">No, voglio riceverle prima di procedere</span></span><span class="ind"></span></button>
+      </div>
+      <div class="gerr" data-for="investimento">Scegli un'opzione per continuare.</div>
+      <div class="kv"><div><span>Percorso selezionato</span><strong class="sP"></strong></div><div><span>Durata selezionata</span><strong class="sD"></strong></div></div>
+      <div id="confBox" hidden style="margin-top:14px">
+        <label class="chk"><input type="checkbox" id="conferma" data-rule="req"><span>Confermo di aver scelto il percorso e la durata indicati sopra e desidero procedere con la richiesta di attivazione.</span></label>
+        <p class="small">La richiesta può essere ritirata prima della conferma definitiva dell'attivazione.</p>
+      </div>
+      <div class="note" id="contattoNote" hidden></div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 11 privacy -->
+    <section class="scr" data-k="privacy" data-q>
+      <div class="kick">11 · Privacy</div>
+      <h2>Consenso al trattamento dei dati</h2>
+      <div class="fields">
+        <label class="chk"><input type="checkbox" id="consenso" data-rule="req"><span>Acconsento al trattamento dei miei dati personali per la gestione della mia richiesta e dell'eventuale rapporto con AQ Coaching, secondo quanto previsto dall'<button class="linkb" type="button" data-privacy>informativa privacy</button>.</span></label>
+      </div>
+      <p class="small">Eventuali consensi relativi all'utilizzo di fotografie, video o dati sui progressi per finalità promozionali vengono raccolti separatamente.</p>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 12 verifica e invio -->
+    <section class="scr" data-k="verifica" data-q>
+      <div class="kick">12 · Invio</div>
+      <h2>Verifica i dati</h2>
+      <p class="lead">Verifica che i dati siano corretti prima di inviare la richiesta.</p>
+      <div class="kv">
+        <div><span>Percorso</span><strong class="sP"></strong></div>
+        <div><span>Durata</span><strong class="sD"></strong></div>
+        <div><span>Account Claude</span><strong id="sC"></strong></div>
+        <div><span>Nome</span><strong id="sN"></strong></div>
+        <div><span>WhatsApp</span><strong id="sW"></strong></div>
+        <div><span>Tipo di richiesta</span><strong id="sT"></strong></div>
+      </div>
+      <div class="ferr" id="ferr" role="alert"></div>
+      <div class="act"><button class="btn" type="button" id="send">Invia richiesta di attivazione</button></div>
+    </section>
+
+    <!-- fine -->
+    <section class="scr done" data-k="done">
+      <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="#F2C14E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <div class="kick">Richiesta ricevuta</div>
+      <h2 id="doneT">Grazie.</h2>
+      <p class="lead">Ho ricevuto la tua richiesta.</p>
+      <ul class="nl">
+        <li><b>01</b><span>Verifico il percorso selezionato e i dati inseriti.</span></li>
+        <li><b>02</b><span>Se hai già ricevuto tutte le informazioni necessarie, procediamo con l'attivazione.</span></li>
+        <li><b>03</b><span>Ti invierò il materiale di benvenuto direttamente all'indirizzo email del tuo account Claude.</span></li>
+      </ul>
+      <p class="lead" style="margin-top:18px">Se invece hai richiesto una conferma o ulteriori informazioni, ti contatterò personalmente prima di procedere.</p>
+      <div class="sign"><b>Antonio Aquino</b>Head Coach — AQ Coaching</div>
+    </section>
+  </main>
+</div>
+<script>
+/* AQ Coaching · motore dei moduli (navigazione, scelte, validazione, invio) */
+(function () {
+  'use strict';
+  var SUPABASE_URL = 'https://njmvwhvwmyxfupzdemhc.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_sW0VTnE5ZtBYrSEUsR9vZQ_p7Wk-gUK';
+
+  var A = window.AQF = { ans: {}, idx: 0, hooks: {}, checks: {} };
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  A.$ = $; A.$$ = $$;
+
+  A.val = function (id) { var e = document.getElementById(id); return e ? String(e.value || '').trim() : ''; };
+  A.get = function (k) { return A.ans[k]; };
+  A.fonte = (new URLSearchParams(location.search).get('src') || '').replace(/[^\w-]/g, '').slice(0, 40);
+
+  function screens() { return $$('.scr'); }
+  function qScreens() { return screens().filter(function (s) { return s.hasAttribute('data-q'); }); }
+
+  A.show = function (i, fromPop) {
+    var sc = screens();
+    i = Math.max(0, Math.min(sc.length - 1, i));
+    A.idx = i;
+    var cur = sc[i], key = cur.getAttribute('data-k');
+    if (A.hooks[key]) A.hooks[key](cur);
+    sc.forEach(function (s, j) { s.classList.toggle('on', j === i); });
+    var qs = qScreens(), qi = qs.indexOf(cur);
+    $('#back').hidden = qi < 0;
+    $('#prog').hidden = qi < 0;
+    $('#prog i').style.width = qi >= 0 ? ((qi + 1) / qs.length * 100) + '%' : '0';
+    window.scrollTo(0, 0);
+    if (!fromPop && history.pushState) history.pushState({ i: i }, '');
+  };
+  A.next = function () { if (A.validate(screens()[A.idx])) A.show(A.idx + 1); };
+  A.goKey = function (k) { var t = screens().findIndex(function (s) { return s.getAttribute('data-k') === k; }); if (t >= 0) A.show(t); };
+
+  /* --- scelte --- */
+  function paint(group) {
+    var k = group.getAttribute('data-k'), v = A.ans[k], multi = group.getAttribute('data-mode') === 'multi';
+    $$('.opt', group).forEach(function (o) {
+      var ov = o.getAttribute('data-v');
+      var on = multi ? (Array.isArray(v) && v.indexOf(ov) >= 0) : v === ov;
+      o.classList.toggle('sel', on);
+      o.setAttribute('aria-pressed', on ? 'true' : 'false');
+      var pc = o.closest('.pc'); if (pc) pc.classList.toggle('sel', on);
+    });
+  }
+  A.paint = function (k) { var g = $('.opts[data-k="' + k + '"]'); if (g) paint(g); };
+  A.bindOpts = function (root) {
+    $$('.opt', root).forEach(function (o) {
+      if (o._b) return; o._b = true;
+      o.setAttribute('type', 'button');
+      o.addEventListener('click', function () {
+        var g = o.closest('.opts'), k = g.getAttribute('data-k'), v = o.getAttribute('data-v');
+        if (g.getAttribute('data-mode') === 'multi') {
+          var arr = Array.isArray(A.ans[k]) ? A.ans[k].slice() : [];
+          var p = arr.indexOf(v); if (p >= 0) arr.splice(p, 1); else arr.push(v);
+          A.ans[k] = arr;
+        } else A.ans[k] = v;
+        paint(g);
+        var ge = g.parentNode.querySelector('.gerr[data-for="' + k + '"]'); if (ge) ge.classList.remove('on');
+        if (A.hooks.change) A.hooks.change(k);
+        var s = g.closest('.scr');
+        if (s.hasAttribute('data-auto') && g.getAttribute('data-mode') !== 'multi') setTimeout(function () { if (screens()[A.idx] === s) A.next(); }, 260);
+      });
+    });
+  };
+
+  /* --- validazione --- */
+  var RULES = {
+    req: function (v) { return v.length > 0; },
+    tel: function (v) { return v.replace(/\D/g, '').length >= 8 && v.length <= 25; },
+    age: function (v) { var n = parseInt(v, 10); return n >= 14 && n <= 90 && /^\d+$/.test(v); },
+    email: function (v) { return !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); },
+    emailreq: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  };
+  A.validate = function (s) {
+    var ok = true, first = null;
+    $$('.opts[data-req]', s).forEach(function (g) {
+      if (g.closest('[hidden]')) return;
+      var k = g.getAttribute('data-k'), v = A.ans[k];
+      var bad = !v || (Array.isArray(v) && !v.length);
+      var ge = g.parentNode.querySelector('.gerr[data-for="' + k + '"]'); if (ge) ge.classList.toggle('on', bad);
+      if (bad) { ok = false; first = first || g; }
+    });
+    $$('[data-rule]', s).forEach(function (el) {
+      if (el.closest('[hidden]')) return;
+      var bad;
+      if (el.type === 'checkbox') { bad = !el.checked; el.closest('.chk').classList.toggle('err', bad); }
+      else { bad = !RULES[el.getAttribute('data-rule')](String(el.value || '').trim()); var f = el.closest('.f'); if (f) f.classList.toggle('err', bad); }
+      if (bad) { ok = false; first = first || el; }
+    });
+    var key = s.getAttribute('data-k');
+    if (ok && A.checks[key]) ok = A.checks[key](s) !== false;
+    if (!ok && first && first.scrollIntoView) first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    return ok;
+  };
+  document.addEventListener('input', function (e) { var f = e.target.closest && e.target.closest('.f'); if (f) f.classList.remove('err'); });
+  document.addEventListener('change', function (e) { var c = e.target.closest && e.target.closest('.chk'); if (c) c.classList.remove('err'); });
+
+  /* --- invio --- */
+  A.send = function (table, body) {
+    return fetch(SUPABASE_URL + '/rest/v1/' + table, {
+      method: 'POST',
+      headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+      body: JSON.stringify(body)
+    }).then(function (r) { if (!r.ok) return r.text().then(function (t) { throw new Error(r.status + ' ' + t); }); });
+  };
+  A.submit = function (btn, label, table, build, onDone) {
+    var ferr = $('#ferr'); ferr.classList.remove('on');
+    if (!A.validate(screens()[A.idx])) return;
+    if (A.val('sito')) { onDone(); A.show(screens().length - 1); return; }
+    var body = build();
+    btn.disabled = true; btn.classList.add('busy'); btn.textContent = 'Invio in corso';
+    A.send(table, body).then(function () {
+      onDone(); A.show(screens().length - 1);
+      if (history.replaceState) history.replaceState({ i: A.idx }, '');
+    }).catch(function () {
+      ferr.textContent = 'Invio non riuscito. Controlla la connessione e riprova: le tue risposte sono ancora qui.';
+      ferr.classList.add('on');
+    }).then(function () { btn.disabled = false; btn.classList.remove('busy'); btn.textContent = label; });
+  };
+  A.ig = function (v) { v = String(v || '').trim().replace(/^(https?:\/\/)?(www\.)?instagram\.com\//i, '').replace(/[/?].*$/, '').replace(/^@+/, ''); return v ? '@' + v : null; };
+
+  /* --- informativa privacy --- */
+  A.privacy = function () {
+    var ov = document.createElement('div'); ov.className = 'ov';
+    ov.innerHTML = '<div class="sheet" role="dialog" aria-modal="true" aria-label="Informativa privacy">' +
+      '<h3>Informativa privacy</h3><p>Ai sensi del Regolamento UE 2016/679 (GDPR).</p>' +
+      '<h4>Titolare</h4><p>Antonio Aquino, AQ Coaching.</p>' +
+      '<h4>Dati raccolti</h4><p>I dati che inserisci nel modulo: nome, contatti, età, città e le risposte su obiettivi, allenamento e preferenze.</p>' +
+      '<h4>Finalità</h4><p>Valutare la tua richiesta, ricontattarti e, se decidi di iniziare, organizzare e gestire il percorso. I dati non vengono usati per pubblicità né ceduti a terzi.</p>' +
+      '<h4>Base giuridica</h4><p>Il tuo consenso e le misure precontrattuali che richiedi compilando il modulo.</p>' +
+      '<h4>Dove e per quanto</h4><p>I dati sono conservati su server nell\'Unione Europea (Francoforte) e accessibili solo al titolare, per il tempo necessario a gestire la richiesta e il successivo rapporto.</p>' +
+      '<h4>I tuoi diritti</h4><p>Puoi chiedere in qualsiasi momento accesso, correzione o cancellazione dei tuoi dati e revocare il consenso, scrivendo ad Antonio Aquino sugli stessi canali da cui ti ha contattato. Puoi anche presentare reclamo al Garante per la protezione dei dati personali.</p>' +
+      '<div class="act" style="padding-top:20px"><button class="btn" type="button">Ho capito</button></div></div>';
+    document.body.appendChild(ov);
+    var close = function () { ov.remove(); };
+    ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+    $('.btn', ov).addEventListener('click', close);
+  };
+
+  A.init = function () {
+    A.bindOpts(document);
+    $$('[data-go="next"]').forEach(function (b) { b.addEventListener('click', A.next); });
+    $$('[data-go="skip"]').forEach(function (b) { b.addEventListener('click', function () { A.show(A.idx + 1); }); });
+    $$('[data-privacy]').forEach(function (b) { b.addEventListener('click', function (e) { e.preventDefault(); A.privacy(); }); });
+    $('#back').addEventListener('click', function () { history.back(); });
+    window.addEventListener('popstate', function (e) {
+      var i = e.state && typeof e.state.i === 'number' ? e.state.i : 0;
+      if (A.idx === screens().length - 1) { history.pushState({ i: A.idx }, ''); return; } // inviato: resta sulla conferma
+      A.show(i, true);
+    });
+    if (history.replaceState) history.replaceState({ i: 0 }, '');
+    A.show(0, true);
+  };
+})();
+
+</script>
+<script>
+(function(){
+  var A = AQF, $ = A.$, $$ = A.$$;
+  var NOMI = {ENTRY:'Entry · Programmazione + Manuale AQ', ONLINE:'Online · Coaching online', PREMIUM:'Premium · Online + presenza', PRESENZA:'Presenza · Sedute individuali'};
+  var MESI = [['1 mese'],['3 mesi'],['6 mesi'],['12 mesi']];
+  var DURATE = {
+    ENTRY: MESI, ONLINE: MESI,
+    PREMIUM: [['1 mese','4 sedute in presenza incluse'],['3 mesi','8 sedute in presenza incluse'],['6 mesi','15 sedute in presenza incluse'],['12 mesi','30 sedute in presenza incluse']],
+    PRESENZA: [['1 seduta'],['4 sedute'],['8 sedute'],['12 sedute'],['15 sedute'],['30 sedute']]
+  };
+  var DECISO = 'Ho già deciso e voglio procedere';
+
+  function tipo(){
+    if (A.ans.investimento === 'no') return 'info';
+    if (A.ans.partenza === DECISO && A.ans.investimento === 'si') return 'attivazione';
+    return 'contatto';
+  }
+
+  /* percorso: apri/chiudi "Cosa comprende" */
+  $$('.pc .more').forEach(function(b){ b.addEventListener('click', function(){ b.closest('.pc').classList.toggle('open'); }); });
+
+  A.hooks.change = function(k){
+    if (k === 'percorso') {
+      var ok = (DURATE[A.ans.percorso] || []).some(function(d){ return d[0] === A.ans.durata; });
+      if (!ok) delete A.ans.durata;
+    }
+    if (k === 'claude') $('#claudeNo').hidden = A.ans.claude !== 'no';
+    if (k === 'luogo') $('#palestraBox').hidden = A.ans.luogo !== 'Palestra';
+    if (k === 'investimento') paintConferma();
+  };
+
+  A.hooks.durata = function(){
+    var p = A.ans.percorso, box = $('#durOpts');
+    $('#durP').textContent = NOMI[p] || '';
+    box.innerHTML = (DURATE[p] || []).map(function(d){
+      return '<button class="opt" data-v="' + d[0] + '"><span class="tx"><span class="tt">' + d[0] + '</span>' + (d[1] ? '<span class="ds">' + d[1] + '</span>' : '') + '</span><span class="ind"></span></button>';
+    }).join('');
+    A.bindOpts(box); A.paint('durata');
+  };
+
+  function summary(){
+    $$('.sP').forEach(function(e){ e.textContent = NOMI[A.ans.percorso] || '—'; });
+    $$('.sD').forEach(function(e){ e.textContent = A.ans.durata || '—'; });
+  }
+  function paintConferma(){
+    var t = tipo(), chosen = !!A.ans.investimento;
+    $('#confBox').hidden = !(chosen && t === 'attivazione');
+    var n = $('#contattoNote');
+    n.hidden = !chosen || t === 'attivazione';
+    n.textContent = t === 'info'
+      ? 'La richiesta verrà trattata come richiesta di informazioni: Antonio ti contatterà prima di procedere.'
+      : 'Hai indicato di volere una conferma o di parlare prima con Antonio: la richiesta verrà trattata come richiesta di contatto e non come conferma definitiva.';
+  }
+  A.hooks.conferma = function(){ summary(); paintConferma(); };
+  A.hooks.verifica = function(){
+    summary();
+    var t = tipo();
+    $('#sC').textContent = A.val('claude_email').toLowerCase();
+    $('#sN').textContent = A.val('nome') + ' ' + A.val('cognome');
+    $('#sW').textContent = A.val('telefono');
+    $('#sT').textContent = t === 'attivazione' ? 'Attivazione del percorso' : t === 'info' ? 'Richiesta di informazioni' : 'Richiesta di contatto';
+    $('#send').textContent = t === 'attivazione' ? 'Invia richiesta di attivazione' : 'Invia richiesta';
+  };
+
+  A.init();
+
+  var btn = $('#send');
+  btn.addEventListener('click', function(){
+    var miss = ['percorso','durata','partenza','claude','obiettivi','esperienza','giorni','luogo','investimento']
+      .filter(function(k){ var v = A.ans[k]; return !v || (Array.isArray(v) && !v.length); })[0];
+    if (miss) { A.goKey({obiettivi:'obiettivo', giorni:'esperienza', investimento:'conferma'}[miss] || miss); return; }
+    var t = tipo();
+    A.submit(btn, btn.textContent, 'attivazioni', function(){
+      return {
+        percorso: A.ans.percorso, durata: A.ans.durata, partenza: A.ans.partenza,
+        claude_account: A.ans.claude === 'si', claude_email: A.val('claude_email').toLowerCase(),
+        nome: A.val('nome'), cognome: A.val('cognome'), eta: parseInt(A.val('eta'), 10), citta: A.val('citta'),
+        telefono: A.val('telefono'), instagram: A.ig(A.val('instagram')), email: A.val('email') || null,
+        obiettivi: A.ans.obiettivi, obiettivo_testo: A.val('obiettivo_testo') || null,
+        esperienza: A.ans.esperienza, giorni: A.ans.giorni, luogo: A.ans.luogo,
+        palestra: A.ans.luogo === 'Palestra' ? (A.val('palestra') || null) : null,
+        info_utili: A.val('info_utili') || null,
+        info_investimento: A.ans.investimento === 'si',
+        conferma: t === 'attivazione' && $('#conferma').checked,
+        consenso: true, fonte: A.fonte || 'diretto'
+      };
+    }, function(){ $('#doneT').textContent = 'Grazie ' + A.val('nome') + '.'; });
+  });
+})();
+</script>
+</body>
+</html>
