@@ -640,7 +640,7 @@ body{background:radial-gradient(900px 420px at 50% -120px,rgba(var(--goldRGB),.1
 (function(){
   var A = AQF;
   /* Prenotazione chiamata: slot da 15 minuti, uno per persona. Orari liberi letti da Supabase (solo giorno e ora, nessun dato personale) */
-  var CALL = { start: '09:00', end: '21:00', step: 15, days: [1,2,3,4,5,6], horizon: 10, maxDays: 6, minMinutes: 60 };
+  var CALL = { start: '09:00', end: '21:00', step: 15, days: [1,2,3,4,5,6], horizon: 10, maxDays: 6, minMinutes: 120 };
   var GG = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'], MM = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
   var GGL = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
   var BUSY = {}, busyOk = false;
