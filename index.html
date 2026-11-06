@@ -423,8 +423,22 @@ body{background:radial-gradient(900px 420px at 50% -120px,rgba(var(--goldRGB),.1
     </section>
 
     <!-- 10 -->
+    <section class="scr" data-k="chiamata" data-q>
+      <div class="kick">10 · Chiamata</div>
+      <h2>Quando posso chiamarti?</h2>
+      <p class="lead">Scegli giorno e orario per una chiamata di circa 10–15 minuti: ci conosciamo e capiamo se e come posso aiutarti. Il giorno prima ti scrivo su WhatsApp per ricordartela.</p>
+      <div class="glabel" style="margin:6px 0 10px">Giorno</div>
+      <div class="opts g4" data-k="cgiorno" data-req></div>
+      <div class="gerr" data-for="cgiorno">Scegli un giorno.</div>
+      <div class="glabel" style="margin:18px 0 10px">Orario</div>
+      <div class="opts g4" data-k="cora" data-req></div>
+      <div class="gerr" data-for="cora">Scegli un orario.</div>
+      <div class="act"><button class="btn" type="button" data-go="next">Continua</button></div>
+    </section>
+
+    <!-- 11 -->
     <section class="scr" data-k="contatti" data-q>
-      <div class="kick">10 · Contatti</div>
+      <div class="kick">11 · Contatti</div>
       <h2>Dove posso ricontattarti?</h2>
       <div class="fields">
         <div class="f"><label for="nome">Nome</label><input id="nome" autocomplete="given-name" maxlength="60" data-rule="req"><div class="msg">Inserisci il tuo nome</div></div>
@@ -455,8 +469,9 @@ body{background:radial-gradient(900px 420px at 50% -120px,rgba(var(--goldRGB),.1
       <ul class="nl">
         <li><b>01</b><span>Analizzo obiettivo, esperienza e disponibilità.</span></li>
         <li><b>02</b><span>Valuto se e come posso aiutarti.</span></li>
-        <li><b>03</b><span>Se ha senso approfondire, ti contatto personalmente per capire insieme quale soluzione è più adatta.</span></li>
+        <li><b>03</b><span>Ci sentiamo nel giorno e all'orario che hai scelto, per capire insieme quale soluzione è più adatta.</span></li>
       </ul>
+      <p class="lead" id="doneCall" hidden></p>
       <div class="sign">A presto,<b>Antonio Aquino</b>Head Coach — AQ Coaching</div>
     </section>
   </main>
@@ -578,7 +593,8 @@ body{background:radial-gradient(900px 420px at 50% -120px,rgba(var(--goldRGB),.1
     A.send(table, body).then(function () {
       onDone(); A.show(screens().length - 1);
       if (history.replaceState) history.replaceState({ i: A.idx }, '');
-    }).catch(function () {
+    }).catch(function (e) {
+      if (A.onConflict && String(e && e.message).indexOf('409') === 0) { A.onConflict(); return; }
       ferr.textContent = 'Invio non riuscito. Controlla la connessione e riprova: le tue risposte sono ancora qui.';
       ferr.classList.add('on');
     }).then(function () { btn.disabled = false; btn.classList.remove('busy'); btn.textContent = label; });
@@ -623,10 +639,63 @@ body{background:radial-gradient(900px 420px at 50% -120px,rgba(var(--goldRGB),.1
 <script>
 (function(){
   var A = AQF;
+  /* Prenotazione chiamata: slot da 15 minuti, uno per persona. Orari liberi letti da Supabase (solo giorno e ora, nessun dato personale) */
+  var CALL = { start: '09:00', end: '21:00', step: 15, days: [1,2,3,4,5,6], horizon: 10, maxDays: 6, minMinutes: 60 };
+  var GG = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'], MM = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+  var GGL = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+  var BUSY = {}, busyOk = false;
+  function iso(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  function hm(m){ return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0'); }
+  function mins(t){ var a = t.split(':'); return +a[0]*60 + +(a[1]||0); }
+  function freeSlots(d){
+    if (CALL.days.indexOf(d.getDay()) < 0) return [];
+    var key = iso(d), now = new Date(), out = [];
+    for (var m = mins(CALL.start); m + CALL.step <= mins(CALL.end); m += CALL.step){
+      var t = new Date(d); t.setHours(0, m, 0, 0);
+      if (t - now < CALL.minMinutes * 60000) continue;
+      if (BUSY[key + ' ' + hm(m)]) continue;
+      out.push(hm(m));
+    }
+    return out;
+  }
+  function loadBusy(){
+    var d0 = new Date(), d1 = new Date(); d1.setDate(d0.getDate() + CALL.horizon);
+    return fetch('https://njmvwhvwmyxfupzdemhc.supabase.co/rest/v1/rpc/slot_occupati', {
+      method: 'POST', headers: { apikey: 'sb_publishable_sW0VTnE5ZtBYrSEUsR9vZQ_p7Wk-gUK', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ da: iso(d0), a: iso(d1) })
+    }).then(function(r){ return r.ok ? r.json() : []; }).then(function(L){
+      BUSY = {}; (L || []).forEach(function(x){ BUSY[x.giorno + ' ' + String(x.ora).slice(0,5)] = 1; }); busyOk = true;
+    }).catch(function(){ busyOk = true; });
+  }
+  function opt(v, t, ds){ return '<button class="opt" data-v="'+v+'"><span class="tx"><span class="tt">'+t+'</span>'+(ds ? '<span class="ds">'+ds+'</span>' : '')+'</span><span class="ind"></span></button>'; }
+  function buildDays(){
+    var box = A.$('.opts[data-k="cgiorno"]'), out = [], vals = [], d = new Date(); d.setHours(12,0,0,0);
+    for (var i = 0; i <= CALL.horizon && out.length < CALL.maxDays; i++){
+      var x = new Date(d); x.setDate(d.getDate()+i);
+      if (freeSlots(x).length){ vals.push(iso(x)); out.push(opt(iso(x), GG[x.getDay()], x.getDate()+' '+MM[x.getMonth()])); }
+    }
+    box.innerHTML = out.length ? out.join('') : '<p class="small">In questo momento non ci sono orari liberi: scrivimi su Instagram e ci organizziamo.</p>';
+    if (vals.indexOf(A.ans.cgiorno) < 0) A.ans.cgiorno = undefined;
+    A.bindOpts(box); A.paint('cgiorno'); buildOre();
+  }
+  function buildOre(){
+    var box = A.$('.opts[data-k="cora"]'), g = A.ans.cgiorno;
+    var L = g ? freeSlots(new Date(g+'T12:00:00')) : [];
+    box.innerHTML = L.length ? L.map(function(t){ return opt(t, t); }).join('') : '<p class="small">Prima scegli il giorno.</p>';
+    if (L.indexOf(A.ans.cora) < 0) A.ans.cora = undefined;
+    A.bindOpts(box); A.paint('cora');
+  }
+  A.hooks.chiamata = function(){ buildDays(); loadBusy().then(buildDays); };
+  var prevChange = A.hooks.change;
+  A.hooks.change = function(k){ if (prevChange) prevChange(k); if (k === 'cgiorno') buildOre(); };
+  A.onConflict = function(){
+    A.ans.cora = undefined;
+    loadBusy().then(function(){ A.goKey('chiamata'); var e = A.$('.scr.on .gerr[data-for="cora"]'); if (e){ e.textContent = 'Questo orario è appena stato prenotato da un\'altra persona: scegline un altro.'; e.classList.add('on'); } });
+  };
   A.init();
   var btn = document.getElementById('send');
   btn.addEventListener('click', function(){
-    var miss = ['obiettivo','esperienza','luogo','giorni','ostacolo','modalita','tempistica','budget']
+    var miss = ['obiettivo','esperienza','luogo','giorni','ostacolo','modalita','tempistica','budget','cgiorno','cora']
       .filter(function(k){ var v = A.ans[k]; return !v || (Array.isArray(v) && !v.length); })[0];
     if (miss) { A.goKey(miss); return; }
     A.submit(btn, 'Invia candidatura', 'leads', function(){
@@ -635,10 +704,13 @@ body{background:radial-gradient(900px 420px at 50% -120px,rgba(var(--goldRGB),.1
         telefono: A.val('telefono'), instagram: A.ig(A.val('instagram')), email: A.val('email') || null,
         obiettivo: A.ans.obiettivo, esperienza: A.ans.esperienza, luogo: A.ans.luogo, giorni: A.ans.giorni,
         ostacolo: A.ans.ostacolo, modalita: A.ans.modalita, tempistica: A.ans.tempistica, budget: A.ans.budget,
-        messaggio: A.val('messaggio') || null, consenso: true, fonte: A.fonte || 'instagram_bio'
+        messaggio: A.val('messaggio') || null, chiamata_giorno: A.ans.cgiorno, chiamata_ora: A.ans.cora, chiamata_fascia: A.ans.cora + '–' + hm(mins(A.ans.cora) + CALL.step), consenso: true, fonte: A.fonte || 'instagram_bio'
       };
     }, function(){
       document.getElementById('doneT').textContent = 'Grazie ' + (A.val('nome') || '') + ', ci siamo.';
+      var dc = document.getElementById('doneCall'), dd = new Date(A.ans.cgiorno + 'T12:00:00');
+      dc.textContent = 'Ti chiamo ' + GGL[dd.getDay()] + ' ' + dd.getDate() + ' ' + MM[dd.getMonth()] + ' alle ' + A.ans.cora + '. Il giorno prima ti scrivo su WhatsApp per ricordartelo.';
+      dc.hidden = false;
     });
   });
 })();
